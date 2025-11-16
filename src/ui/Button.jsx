@@ -11,17 +11,22 @@ const variations = {
     background-color: white;
     border: 1px solid var(--border-color);
   `,
+
+  whiteBtn: css`
+    background-color: white;
+    color: var(--primary-green);
+  `,
 };
 
 const Button = styled.button`
   padding: 0.8rem 2.6rem;
   border-radius: var(--border-radius-md);
   text-transform: capitalize;
+  transition: 0.3s;
+  width: fit-content;
 
-  @media (min-width: 1035px) {
-    & {
-      padding: 1.2rem 3.2rem;
-    }
+  &:hover {
+    letter-spacing: 0.5px;
   }
 
   ${(props) => variations[props.variation]}

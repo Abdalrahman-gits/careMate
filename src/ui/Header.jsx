@@ -5,8 +5,11 @@ import Container from "./Container";
 import styled from "styled-components";
 import NavList from "./NavList";
 import { useState } from "react";
+import ButtonContainer from "./ButtonContainer";
+import MobileMenu from "./MobileMenu";
 
 const HeaderContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,11 +26,6 @@ const HeaderContent = styled.div`
       display: flex;
     }
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 1.6rem;
 `;
 
 const BurgerMenu = styled.div`
@@ -91,6 +89,7 @@ function Header() {
             <span></span>
             <span></span>
           </BurgerMenu>
+          {menuOpened && <MobileMenu />}
         </HeaderContainer>
       </Container>
     </header>
