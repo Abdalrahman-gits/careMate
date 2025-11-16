@@ -5,14 +5,14 @@ const LogoStyled = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-right: 3.8rem;
+  margin-right: 1rem;
   font-size: 2rem;
 
   color: var(--primary-green);
 
-  @media (min-width: 1035px) {
+  @media (min-width: 991px) {
     & {
-      margin-right: 4.8rem;
+      margin-right: 2.5rem;
       font-size: 2.8rem;
     }
   }

@@ -64,6 +64,11 @@ const GlobalStyles = createGlobalStyle`
 
   /* Project Variables */
 
+  /* Padding and Margins */
+  --container-lg-pd: 6rem;
+  --container-md-pd: 3rem;
+  --container-sm-pd: 1.5rem;
+
   /* Colors */
   --primary-green: #1C4A2A;
 
@@ -73,6 +78,7 @@ const GlobalStyles = createGlobalStyle`
 
   --color-green: #0e2515;
   --color-muted: #8c8c8c;
+  --color-light-white: rgba(255, 255, 255, 70%);
   --border-color: #e0e8e0;
 
 }
@@ -110,7 +116,11 @@ select {
   color: inherit;
 }
 
+
+
 button {
+  border: none;
+  outline: none;
   cursor: pointer;
 }
 
@@ -122,14 +132,6 @@ select:disabled,
 input:disabled {
   background-color: var(--color-grey-200);
   color: var(--color-grey-500);
-}
-
-input:focus,
-button:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid var(--color-brand-600);
-  outline-offset: -1px;
 }
 
 /* Parent selector, finally 😃 */
@@ -154,7 +156,6 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 img {
