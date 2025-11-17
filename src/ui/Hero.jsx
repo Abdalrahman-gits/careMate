@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledHero = styled.div`
-  height: calc(100vh - 9.37rem);
+  height: calc(100dvh - 9.37rem);
   display: flex;
   flex-direction: column;
 
@@ -13,7 +13,7 @@ const StyledHero = styled.div`
 
   @media (min-width: 991px) {
     & {
-      height: calc(100vh - 12rem);
+      height: calc(100dvh - 12rem);
     }
   }
 `;

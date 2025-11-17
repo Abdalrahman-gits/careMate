@@ -84,12 +84,17 @@ function Header() {
           </HeaderContent>
           <BurgerMenu
             className={`${menuOpened ? "active" : ""}`}
-            onClick={() => setMenuOpened((val) => !val)}>
+            onClick={(e) => {
+              // Prevent this click from bubbling to the document listener
+              // which is used to close the mobile menu when clicking outside
+              e.stopPropagation();
+              setMenuOpened((val) => !val);
+            }}>
             <span></span>
             <span></span>
             <span></span>
           </BurgerMenu>
-          {menuOpened && <MobileMenu />}
+          {menuOpened && <MobileMenu setMenuOpened={setMenuOpened} />}
         </HeaderContainer>
       </Container>
     </header>
