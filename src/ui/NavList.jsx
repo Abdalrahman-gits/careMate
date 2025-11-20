@@ -15,7 +15,7 @@ const StyledNavList = styled.ul`
 
 const StyledNavLink = styled(NavLink)`
   display: block;
-  padding: 1rem 1.4rem;
+  padding: 1.4rem;
   border-radius: var(--border-radius-md);
 
   &.active {
@@ -28,7 +28,7 @@ const StyledNavLink = styled(NavLink)`
   }
 
   @media (min-width: 991px) {
-    padding: 1.2rem 0.8rem;
+    padding: 0.8rem 1.2rem;
   }
 `;
 

@@ -12,7 +12,7 @@ const StyledMobileMenu = styled.div`
   box-shadow: 0px 5px 10px -7px black;
 
   position: absolute;
-  top: calc(100% + 24px);
+  top: 100%;
   inset-inline: 0;
   padding: 2rem;
   border: 2px solid var(--border-color);

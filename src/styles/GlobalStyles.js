@@ -65,9 +65,9 @@ const GlobalStyles = createGlobalStyle`
   /* Project Variables */
 
   /* Padding and Margins */
-  --container-lg-pd: 6rem;
-  --container-md-pd: 3rem;
-  --container-sm-pd: 1.5rem;
+  --container-lg-pd: 4rem;
+  --container-md-pd: 2rem;
+  --container-sm-pd: 1.2rem;
 
   /* Colors */
   --primary-green: #1C4A2A;

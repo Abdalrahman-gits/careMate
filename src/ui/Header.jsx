@@ -13,6 +13,7 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 1.8rem 0px;
 `;
 
 const HeaderContent = styled.div`
@@ -29,7 +30,7 @@ const HeaderContent = styled.div`
 `;
 
 const BurgerMenu = styled.div`
-  padding: 1rem;
+  padding: 0.8rem;
   background-color: var(--bg-card);
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius-md);
