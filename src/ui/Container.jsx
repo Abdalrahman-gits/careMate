@@ -13,6 +13,15 @@ const Container = styled.div`
     }
   }
 
+  @media (min-width: 786px) {
+    & {
+      padding-left: var(--container-md-pd);
+      padding-right: var(--container-md-pd);
+
+      /* font-size: inherit; */
+    }
+  }
+
   @media (min-width: 991px) {
     & {
       padding-left: var(--container-lg-pd);
