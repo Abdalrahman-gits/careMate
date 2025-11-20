@@ -3,13 +3,16 @@ import styled from "styled-components";
 const StyledHero = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  justify-content: center;
   background-color: var(--primary-green);
-  flex: 1;
+  min-height: ${({ minheight }) =>
+    minheight ? minheight : "calc(100dvh - 7.6rem)"};
 
   @media (min-width: 991px) {
-    & {
-      flex-direction: row;
-    }
+    min-height: ${({ minheight }) =>
+      minheight ? minheight : "calc(100dvh - 7.8rem)"};
+    flex-direction: row;
+    justify-content: flex-start;
   }
 `;
 
@@ -50,15 +53,16 @@ const MutedText = styled.p`
 
 // Image conatiner.
 const RightHandSide = styled.div`
-  position: relative;
+  display: block;
   margin: 2rem auto;
   width: 300px;
   height: 300px;
+  overflow: hidden;
 
   @media (min-width: 768px) {
     & {
-      width: 420px;
-      height: 420px;
+      width: 380px;
+      height: 380px;
     }
   }
 
@@ -66,7 +70,7 @@ const RightHandSide = styled.div`
     & {
       margin: 0;
       width: 100%;
-      height: 100%;
+      height: auto;
       margin-top: 0;
       text-align: left;
       flex-basis: 50%;
@@ -75,21 +79,25 @@ const RightHandSide = styled.div`
 `;
 
 const Image = styled.img`
-  position: absolute;
+  display: block;
   width: 100%;
   height: 100%;
+  max-height: ${({ maxheight }) =>
+    maxheight ? maxheight : "calc(100dvh - 7.6rem)"};
   border-radius: 50%;
   object-fit: cover;
   object-position: right;
 
   @media (min-width: 991px) {
+    max-height: ${({ maxheight }) =>
+      maxheight ? maxheight : "calc(100dvh - 7.8rem)"};
     border-radius: 0;
   }
 `;
 
-function Hero({ title, paragraph, imgSrc, children }) {
+function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
   return (
-    <StyledHero>
+    <StyledHero minheight={imgMinHeight}>
       <LeftHandSide>
         <LeftConatiner>
           <div>
@@ -100,7 +108,7 @@ function Hero({ title, paragraph, imgSrc, children }) {
         </LeftConatiner>
       </LeftHandSide>
       <RightHandSide>
-        <Image src={imgSrc} alt="Landing-page-image" />
+        <Image maxheight={imgMinHeight} src={imgSrc} alt="Landing-page-image" />
       </RightHandSide>
     </StyledHero>
   );
