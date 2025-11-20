@@ -13,6 +13,7 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 1.8rem 0px;
 `;
 
 const HeaderContent = styled.div`
@@ -29,7 +30,7 @@ const HeaderContent = styled.div`
 `;
 
 const BurgerMenu = styled.div`
-  padding: 1rem;
+  padding: 0.8rem;
   background-color: var(--bg-card);
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius-md);
@@ -84,12 +85,17 @@ function Header() {
           </HeaderContent>
           <BurgerMenu
             className={`${menuOpened ? "active" : ""}`}
-            onClick={() => setMenuOpened((val) => !val)}>
+            onClick={(e) => {
+              // Prevent this click from bubbling to the document listener
+              // which is used to close the mobile menu when clicking outside
+              e.stopPropagation();
+              setMenuOpened((val) => !val);
+            }}>
             <span></span>
             <span></span>
             <span></span>
           </BurgerMenu>
-          {menuOpened && <MobileMenu />}
+          {menuOpened && <MobileMenu setMenuOpened={setMenuOpened} />}
         </HeaderContainer>
       </Container>
     </header>

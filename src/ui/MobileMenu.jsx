@@ -2,6 +2,7 @@ import styled from "styled-components";
 import NavList from "./NavList";
 import ButtonContainer from "./ButtonContainer";
 import Button from "./Button";
+import { useEffect } from "react";
 
 const StyledMobileMenu = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const StyledMobileMenu = styled.div`
   box-shadow: 0px 5px 10px -7px black;
 
   position: absolute;
-  top: calc(100% + 24px);
+  top: 100%;
   inset-inline: 0;
   padding: 2rem;
   border: 2px solid var(--border-color);
@@ -38,9 +39,23 @@ const StyledMobileMenu = styled.div`
   }
 `;
 
-function MobileMenu() {
+function MobileMenu({ setMenuOpened }) {
+  // Handle Clicking outside the menu while open
+  useEffect(
+    function () {
+      function handleClickOutsideMenu(e) {
+        if (!e.target.closest(".mobile-menu")) setMenuOpened(false);
+      }
+
+      document.addEventListener("click", handleClickOutsideMenu);
+      return () =>
+        document.removeEventListener("click", handleClickOutsideMenu);
+    },
+    [setMenuOpened]
+  );
+
   return (
-    <StyledMobileMenu>
+    <StyledMobileMenu className="mobile-menu">
       <NavList direction="vertical" />
       <ButtonContainer direction="vertical">
         <Button variation="bordered">login</Button>

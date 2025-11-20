@@ -1,31 +1,23 @@
 import styled from "styled-components";
 
 const StyledHero = styled.div`
-  height: calc(100vh - 9.37rem);
   display: flex;
-  flex-direction: column;
-
-  @media (min-width: 768px) {
-    & {
-      flex-direction: row;
-    }
-  }
+  flex-direction: column-reverse;
+  background-color: var(--primary-green);
+  flex: 1;
 
   @media (min-width: 991px) {
     & {
-      height: calc(100vh - 12rem);
+      flex-direction: row;
     }
   }
 `;
 
 const LeftHandSide = styled.div`
-  order: 2;
-  flex-basis: 100%;
-  background-color: var(--primary-green);
+  flex: 1;
 
-  @media (min-width: 768px) {
+  @media (min-width: 991px) {
     & {
-      order: 1;
       flex-basis: 50%;
     }
   }
@@ -35,18 +27,10 @@ const LeftConatiner = styled.div`
   color: white;
   padding: 2rem;
   text-align: center;
-  padding-top: calc(var(--container-lg-pd) + 100px);
-
-  @media (max-width: 540px) {
-    padding-top: calc(var(--container-lg-pd));
-  }
-
-  @media (min-width: 768px) {
-    padding-left: var(--container-md-pd);
-    text-align: left;
-  }
 
   @media (min-width: 991px) {
+    text-align: left;
+    padding-top: calc(var(--container-lg-pd) + 100px);
     padding-left: var(--container-lg-pd);
   }
 `;
@@ -59,30 +43,48 @@ const MutedText = styled.p`
   line-height: 180%;
   word-spacing: 2px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 991px) {
     margin: 1.5rem 0 7rem;
   }
 `;
 
-// Image conatiner too.
+// Image conatiner.
 const RightHandSide = styled.div`
-  display: none;
-  overflow: hidden;
+  position: relative;
+  margin: 2rem auto;
+  width: 300px;
+  height: 300px;
 
   @media (min-width: 768px) {
     & {
-      display: block;
-      order: 2;
+      width: 420px;
+      height: 420px;
+    }
+  }
+
+  @media (min-width: 991px) {
+    & {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      margin-top: 0;
+      text-align: left;
       flex-basis: 50%;
     }
   }
 `;
 
 const Image = styled.img`
+  position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover;
   object-position: right;
+
+  @media (min-width: 991px) {
+    border-radius: 0;
+  }
 `;
 
 function Hero({ title, paragraph, imgSrc, children }) {
