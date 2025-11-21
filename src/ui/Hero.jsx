@@ -6,11 +6,11 @@ const StyledHero = styled.div`
   justify-content: center;
   background-color: var(--primary-green);
   min-height: ${({ minheight }) =>
-    minheight ? minheight : "calc(100dvh - 7.6rem)"};
+    minheight ? minheight : "calc(100dvh - var(--header-h-sm))"};
 
   @media (min-width: 991px) {
     min-height: ${({ minheight }) =>
-      minheight ? minheight : "calc(100dvh - 7.8rem)"};
+      minheight ? minheight : "calc(100dvh - var(--header-h-lg))"};
     flex-direction: row;
     justify-content: flex-start;
   }
@@ -83,14 +83,14 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   max-height: ${({ maxheight }) =>
-    maxheight ? maxheight : "calc(100dvh - 7.6rem)"};
+    maxheight ? maxheight : "calc(100dvh - var(--header-h-sm))"};
   border-radius: 50%;
   object-fit: cover;
   object-position: right;
 
   @media (min-width: 991px) {
     max-height: ${({ maxheight }) =>
-      maxheight ? maxheight : "calc(100dvh - 7.8rem)"};
+      maxheight ? maxheight : "calc(100dvh - var(--header-h-lg))"};
     border-radius: 0;
   }
 `;
