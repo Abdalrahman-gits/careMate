@@ -16,20 +16,35 @@ const variations = {
     background-color: white;
     color: var(--primary-green);
   `,
+
+  beigeBtn: css`
+    background-color: var(--bg-beige);
+    color: white;
+  `,
+};
+
+const sizes = {
+  large: css`
+    padding: 1.4rem 3rem;
+  `,
+
+  small: css`
+    padding: 0.8rem 2.6rem;
+  `,
 };
 
 const Button = styled.button`
-  padding: 0.8rem 2.6rem;
+  ${({ size = "small" }) => sizes[size]};
   border-radius: var(--border-radius-md);
   text-transform: capitalize;
   transition: 0.3s;
-  width: fit-content;
+  width: ${({ width = "fit-content" }) => width};
 
   &:hover {
     letter-spacing: 0.5px;
   }
 
-  ${(props) => variations[props.variation]}
+  ${({ variation }) => variations[variation]}
 `;
 
 export default Button;

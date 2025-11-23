@@ -69,6 +69,10 @@ const GlobalStyles = createGlobalStyle`
   --container-md-pd: 2rem;
   --container-sm-pd: 1.2rem;
 
+  /* Heights */
+  --header-h-lg: 7.8rem;
+  --header-h-sm: 7.6rem;
+
   /* Colors */
   --primary-green: #1C4A2A;
 
@@ -89,6 +93,8 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  border: none;
+  outline: none;
 
   /* Creating animations for dark mode */
   transition: background-color 0.3s, border 0.3s;
@@ -100,10 +106,7 @@ html {
 
 body {
   font-family: "Montserrat", sans-serif;
-  color: var(--color-grey-700);
-
   transition: color 0.3s, background-color 0.3s;
-  min-height: 100vh;
   line-height: 1.5;
   font-size: 1.6rem;
 }

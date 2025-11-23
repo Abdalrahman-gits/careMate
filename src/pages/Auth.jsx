@@ -1,14 +1,31 @@
 import styled from "styled-components";
 import AuthImageBg from "../assets/AuthImage.png";
+import SignupForm from "../features/authentication/SignupForm";
+import LoginForm from "../features/authentication/LoginForm";
+// import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const AuthPageStyle = styled.div`
   background-image: url(${AuthImageBg});
-  min-height: 90dvh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1.5rem;
+
+  min-height: calc(100dvh - var(--header-h-sm));
+
+  @media (min-width: 991px) {
+    min-height: calc(100dvh - var(--header-h-lg));
+  }
 `;
 
 function Auth() {
-  console.log(AuthImageBg);
-  return <AuthPageStyle>Auth page</AuthPageStyle>;
+  return (
+    <AuthPageStyle>
+      <Outlet />
+    </AuthPageStyle>
+  );
 }
 
 export default Auth;
