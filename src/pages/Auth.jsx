@@ -8,6 +8,7 @@ import { Outlet } from "react-router-dom";
 const AuthPageStyle = styled.div`
   background-image: url(${AuthImageBg});
   background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;

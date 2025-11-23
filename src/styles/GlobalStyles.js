@@ -68,6 +68,10 @@ const GlobalStyles = createGlobalStyle`
   --container-lg-pd: 4rem;
   --container-md-pd: 2rem;
   --container-sm-pd: 1.2rem;
+  --section-lg-pt: 12rem;
+  --section-pb: 4.4rem;
+  --section-row-gap: 4.8rem;
+  --section-col-gap: 1.6rem;
 
   /* Heights */
   --header-h-lg: 7.8rem;

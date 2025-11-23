@@ -53,7 +53,7 @@ function SignupForm() {
           icon={MdAlternateEmail}
           type="email"
           id="email"
-          placeholder="Enter your email address"
+          placeholder="Email address"
         />
       </FormRow>
       <FormRow label="password">
