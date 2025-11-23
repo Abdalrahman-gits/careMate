@@ -1,20 +1,28 @@
 import Button from "../../ui/Button";
 import FormSubTitle from "../../ui/FormSubTitle";
-import { FaLock, FaPhoneAlt, FaRegIdCard, FaUser } from "react-icons/fa";
+import { FaPhoneAlt, FaRegIdCard, FaUser } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
-import { IoEyeOff } from "react-icons/io5";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import InputWithIcon from "../../ui/InputWithIcon";
 import PasswordInput from "../../ui/PasswordInput";
+import { useNavigate } from "react-router-dom";
 
 function SignupForm() {
+  const navigate = useNavigate();
+
   return (
     <Form>
       <h2>Sign Up</h2>
       <FormSubTitle>
         <span>Already a member?</span>
-        <button>Login</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/auth/login");
+          }}>
+          Login.
+        </button>
       </FormSubTitle>
       <FormRow label="role">
         <InputWithIcon

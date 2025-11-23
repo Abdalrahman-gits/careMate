@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import AuthImageBg from "../assets/AuthImage.png";
 import SignupForm from "../features/authentication/SignupForm";
+import LoginForm from "../features/authentication/LoginForm";
+// import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const AuthPageStyle = styled.div`
   background-image: url(${AuthImageBg});
@@ -20,7 +23,7 @@ const AuthPageStyle = styled.div`
 function Auth() {
   return (
     <AuthPageStyle>
-      <SignupForm />
+      <Outlet />
     </AuthPageStyle>
   );
 }

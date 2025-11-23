@@ -17,8 +17,6 @@ const StyledHero = styled.div`
 `;
 
 const LeftHandSide = styled.div`
-  flex: 1;
-
   @media (min-width: 991px) {
     & {
       flex-basis: 50%;
@@ -35,6 +33,11 @@ const LeftConatiner = styled.div`
     text-align: left;
     padding-top: calc(var(--container-lg-pd) + 100px);
     padding-left: var(--container-lg-pd);
+  }
+
+  /* To make sure that the LHS is aligned with the container */
+  @media (min-width: 1440px) {
+    margin-left: calc((100vw - 1440px) / 2);
   }
 `;
 
