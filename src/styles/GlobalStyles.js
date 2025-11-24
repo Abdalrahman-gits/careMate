@@ -77,6 +77,10 @@ const GlobalStyles = createGlobalStyle`
   --header-h-lg: 7.8rem;
   --header-h-sm: 7.6rem;
 
+  /* Heights */
+  --header-h-lg: 7.8rem;
+  --header-h-sm: 7.6rem;
+
   /* Colors */
   --primary-green: #1C4A2A;
 
