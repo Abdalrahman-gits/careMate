@@ -82,6 +82,7 @@ const GlobalStyles = createGlobalStyle`
 
   --bg-beige: #C6B09A;
   --bg-gray: #464C48;
+  --bg-ligt-gray: #f5f5f5;
   --bg-card: #f8fcf9;
 
   --color-green: #0e2515;

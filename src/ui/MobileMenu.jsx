@@ -3,6 +3,7 @@ import NavList from "./NavList";
 import ButtonContainer from "./ButtonContainer";
 import Button from "./Button";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const StyledMobileMenu = styled.div`
   display: flex;
@@ -40,6 +41,7 @@ const StyledMobileMenu = styled.div`
 `;
 
 function MobileMenu({ setMenuOpened }) {
+  const navigate = useNavigate();
   // Handle Clicking outside the menu while open
   useEffect(
     function () {
@@ -58,8 +60,22 @@ function MobileMenu({ setMenuOpened }) {
     <StyledMobileMenu className="mobile-menu">
       <NavList direction="vertical" />
       <ButtonContainer direction="vertical">
-        <Button variation="bordered">login</Button>
-        <Button variation="primary">register</Button>
+        <Button
+          variation="bordered"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("auth/login");
+          }}>
+          login
+        </Button>
+        <Button
+          variation="primary"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("auth/register");
+          }}>
+          register
+        </Button>
       </ButtonContainer>
     </StyledMobileMenu>
   );

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import Button from "./Button";
 import Container from "./Container";
@@ -70,6 +70,7 @@ const BurgerMenu = styled.div`
 
 function Header() {
   const [menuOpened, setMenuOpened] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header>
@@ -79,8 +80,22 @@ function Header() {
           <HeaderContent>
             <NavList />
             <ButtonContainer>
-              <Button variation="bordered">login</Button>
-              <Button variation="primary">register</Button>
+              <Button
+                variation="bordered"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("auth/login");
+                }}>
+                login
+              </Button>
+              <Button
+                variation="primary"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("auth/register");
+                }}>
+                register
+              </Button>
             </ButtonContainer>
           </HeaderContent>
           <BurgerMenu

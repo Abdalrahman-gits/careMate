@@ -45,7 +45,7 @@ const Button = styled.button`
   transition: 0.3s;
   width: ${({ width = "fit-content" }) => width};
 
-  ${({ variation }) => variations[variation]}
+  ${({ variation = "primary" }) => variations[variation]}
 `;
 
 export default Button;

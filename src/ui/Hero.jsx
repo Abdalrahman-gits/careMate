@@ -6,7 +6,7 @@ const StyledHero = styled.div`
   justify-content: center;
   background-color: var(--primary-green);
   min-height: ${({ minheight }) =>
-    minheight ? minheight : "calc(100dvh - var(--header-h-sm))"};
+    minheight ? "auto" : "calc(100dvh - var(--header-h-sm))"};
 
   @media (min-width: 991px) {
     min-height: ${({ minheight }) =>

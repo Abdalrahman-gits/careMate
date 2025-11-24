@@ -28,14 +28,19 @@ const DoctorInfo = styled.div`
   justify-content: center;
   text-align: center;
   gap: var(--section-col-gap);
+
+  & h2 {
+    font-weight: 600;
+  }
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: ${({ gapsize }) => (gapsize === "smaller" ? "0.7rem" : "1.6rem")};
+  gap: ${({ gapsize }) => (gapsize === "smaller" ? "0.5rem" : "1.6rem")};
 
+  font-size: 1.2rem;
   color: var(--color-muted);
   text-transform: capitalize;
 `;
