@@ -10,6 +10,11 @@ const variations = {
     color: black;
     background-color: white;
     border: 1px solid var(--border-color);
+
+    &:hover {
+      background-color: var(--primary-green);
+      color: white;
+    }
   `,
 
   whiteBtn: css`
@@ -40,11 +45,7 @@ const Button = styled.button`
   transition: 0.3s;
   width: ${({ width = "fit-content" }) => width};
 
-  &:hover {
-    letter-spacing: 0.5px;
-  }
-
-  ${({ variation }) => variations[variation]}
+  ${({ variation = "primary" }) => variations[variation]}
 `;
 
 export default Button;

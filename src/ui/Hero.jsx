@@ -6,7 +6,7 @@ const StyledHero = styled.div`
   justify-content: center;
   background-color: var(--primary-green);
   min-height: ${({ minheight }) =>
-    minheight ? minheight : "calc(100dvh - var(--header-h-sm))"};
+    minheight ? "auto" : "calc(100dvh - var(--header-h-sm))"};
 
   @media (min-width: 991px) {
     min-height: ${({ minheight }) =>
@@ -43,7 +43,6 @@ const LeftConatiner = styled.div`
 
 const MutedText = styled.p`
   color: var(--color-light-white);
-  font-size: 1.8rem;
   letter-spacing: -1px;
   margin: 1rem 0 3rem;
   line-height: 180%;
@@ -104,7 +103,7 @@ function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
       <LeftHandSide>
         <LeftConatiner>
           <div>
-            <h1>{title}</h1>
+            <h1 style={{ fontWeight: "normal" }}>{title}</h1>
             <MutedText>{paragraph}</MutedText>
           </div>
           {children}

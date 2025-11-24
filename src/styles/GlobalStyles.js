@@ -68,6 +68,14 @@ const GlobalStyles = createGlobalStyle`
   --container-lg-pd: 4rem;
   --container-md-pd: 2rem;
   --container-sm-pd: 1.2rem;
+  --section-lg-pt: 12rem;
+  --section-pb: 4.4rem;
+  --section-row-gap: 4.8rem;
+  --section-col-gap: 1.6rem;
+
+  /* Heights */
+  --header-h-lg: 7.8rem;
+  --header-h-sm: 7.6rem;
 
   /* Heights */
   --header-h-lg: 7.8rem;
@@ -78,6 +86,7 @@ const GlobalStyles = createGlobalStyle`
 
   --bg-beige: #C6B09A;
   --bg-gray: #464C48;
+  --bg-ligt-gray: #f5f5f5;
   --bg-card: #f8fcf9;
 
   --color-green: #0e2515;

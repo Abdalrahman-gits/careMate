@@ -6,7 +6,7 @@ export const InputContainer = styled.div`
 
 export const FormInput = styled.input`
   width: 100%;
-  padding: 1.4rem 5rem;
+  padding: 1.4rem 2rem 1.4rem 5rem;
   border-radius: var(--border-radius-lg);
   background-color: #fff;
   caret-color: var(--primary-green);
