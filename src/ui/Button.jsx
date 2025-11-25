@@ -30,11 +30,19 @@ const variations = {
 
 const sizes = {
   large: css`
+<<<<<<< HEAD
     padding: var(--btn-lg-pd);
   `,
 
   small: css`
     padding: var(--btn-sm-pd);
+=======
+    padding: 1.4rem 3rem;
+  `,
+
+  small: css`
+    padding: 0.8rem 2.6rem;
+>>>>>>> aafb913122bd744dd6d1c101ee9905db19cd3f36
   `,
 };
 
