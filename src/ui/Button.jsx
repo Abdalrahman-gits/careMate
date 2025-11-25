@@ -10,26 +10,42 @@ const variations = {
     color: black;
     background-color: white;
     border: 1px solid var(--border-color);
+
+    &:hover {
+      background-color: var(--primary-green);
+      color: white;
+    }
   `,
 
   whiteBtn: css`
     background-color: white;
     color: var(--primary-green);
   `,
+
+  beigeBtn: css`
+    background-color: var(--bg-beige);
+    color: white;
+  `,
+};
+
+const sizes = {
+  large: css`
+    padding: var(--btn-lg-pd);
+  `,
+
+  small: css`
+    padding: var(--btn-sm-pd);
+  `,
 };
 
 const Button = styled.button`
-  padding: 0.8rem 2.6rem;
+  ${({ size = "small" }) => sizes[size]};
   border-radius: var(--border-radius-md);
   text-transform: capitalize;
   transition: 0.3s;
-  width: fit-content;
+  width: ${({ width = "fit-content" }) => width};
 
-  &:hover {
-    letter-spacing: 0.5px;
-  }
-
-  ${(props) => variations[props.variation]}
+  ${({ variation = "primary" }) => variations[variation]}
 `;
 
 export default Button;

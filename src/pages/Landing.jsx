@@ -1,8 +1,10 @@
 import LandingImage from "../assets/Landing.png";
 import Hero from "../ui/Hero";
 import Button from "../ui/Button";
+import { useNavigate } from "react-router-dom";
 
 function Landing() {
+  const navigate = useNavigate();
   return (
     <Hero
       title="Health in Your Hands."
@@ -10,7 +12,12 @@ function Landing() {
               with ease, explore health blogs, and stay on top of your
               well-being, all in one place."
       imgSrc={LandingImage}>
-      <Button variation="whiteBtn">Get Started</Button>
+      <Button
+        variation="whiteBtn"
+        size="large"
+        onClick={() => navigate("auth")}>
+        Get Started
+      </Button>
     </Hero>
   );
 }

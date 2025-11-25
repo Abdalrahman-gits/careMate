@@ -6,19 +6,17 @@ const StyledHero = styled.div`
   justify-content: center;
   background-color: var(--primary-green);
   min-height: ${({ minheight }) =>
-    minheight ? minheight : "calc(100dvh - 7.6rem)"};
+    minheight ? "auto" : "calc(100dvh - var(--header-h-sm))"};
 
   @media (min-width: 991px) {
     min-height: ${({ minheight }) =>
-      minheight ? minheight : "calc(100dvh - 7.8rem)"};
+      minheight ? minheight : "calc(100dvh - var(--header-h-lg))"};
     flex-direction: row;
     justify-content: flex-start;
   }
 `;
 
 const LeftHandSide = styled.div`
-  flex: 1;
-
   @media (min-width: 991px) {
     & {
       flex-basis: 50%;
@@ -36,11 +34,15 @@ const LeftConatiner = styled.div`
     padding-top: calc(var(--container-lg-pd) + 100px);
     padding-left: var(--container-lg-pd);
   }
+
+  /* To make sure that the LHS is aligned with the container */
+  @media (min-width: 1440px) {
+    margin-left: calc((100vw - 1440px) / 2);
+  }
 `;
 
 const MutedText = styled.p`
   color: var(--color-light-white);
-  font-size: 1.8rem;
   letter-spacing: -1px;
   margin: 1rem 0 3rem;
   line-height: 180%;
@@ -83,14 +85,14 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   max-height: ${({ maxheight }) =>
-    maxheight ? maxheight : "calc(100dvh - 7.6rem)"};
+    maxheight ? maxheight : "calc(100dvh - var(--header-h-sm))"};
   border-radius: 50%;
   object-fit: cover;
   object-position: right;
 
   @media (min-width: 991px) {
     max-height: ${({ maxheight }) =>
-      maxheight ? maxheight : "calc(100dvh - 7.8rem)"};
+      maxheight ? maxheight : "calc(100dvh - var(--header-h-lg))"};
     border-radius: 0;
   }
 `;
@@ -101,7 +103,7 @@ function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
       <LeftHandSide>
         <LeftConatiner>
           <div>
-            <h1>{title}</h1>
+            <h1 style={{ fontWeight: "normal" }}>{title}</h1>
             <MutedText>{paragraph}</MutedText>
           </div>
           {children}

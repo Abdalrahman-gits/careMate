@@ -68,18 +68,34 @@ const GlobalStyles = createGlobalStyle`
   --container-lg-pd: 4rem;
   --container-md-pd: 2rem;
   --container-sm-pd: 1.2rem;
+  --section-lg-pt: 12rem;
+  --section-pb: 4.4rem;
+  --btn-lg-pd: 1.4rem 3rem;
+  --btn-sm-pd: 0.8rem 2rem;
+  --section-row-gap: 4.8rem;
+  --section-col-gap: 1.6rem;
+
+  /* Heights */
+  --header-h-lg: 7.8rem;
+  --header-h-sm: 7.6rem;
 
   /* Colors */
   --primary-green: #1C4A2A;
 
+  /* Backgrounds-colors */
   --bg-beige: #C6B09A;
   --bg-gray: #464C48;
+  --bg-ligt-gray: #f5f5f5;
   --bg-card: #f8fcf9;
-
+  
+  /* Colors */
   --color-green: #0e2515;
   --color-muted: #8c8c8c;
   --color-light-white: rgba(255, 255, 255, 70%);
+
+  /* Border-colors */
   --border-color: #e0e8e0;
+  --footer-border-color: #DEDEDE;
 
 }
 
@@ -89,6 +105,8 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  border: none;
+  outline: none;
 
   /* Creating animations for dark mode */
   transition: background-color 0.3s, border 0.3s;
@@ -100,10 +118,7 @@ html {
 
 body {
   font-family: "Montserrat", sans-serif;
-  color: var(--color-grey-700);
-
   transition: color 0.3s, background-color 0.3s;
-  min-height: 100vh;
   line-height: 1.5;
   font-size: 1.6rem;
 }
