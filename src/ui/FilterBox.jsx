@@ -8,12 +8,14 @@ const StyledFilterBox = styled.div`
   flex-direction: column;
   gap: 2.5rem;
   padding: 4.8rem 2.4rem;
+  margin-top: -3.5rem;
   background-color: white;
   border-radius: var(--border-radius-lg);
   box-shadow: 0px 3px 15px 0px rgb(0, 0, 0, 0.1);
 
-  @media (min-width: 991px) {
+  @media (min-width: 1200px) {
     position: absolute;
+    margin-top: 0rem;
     inset-inline: 0;
     top: 0;
     transform: translateY(-70%);

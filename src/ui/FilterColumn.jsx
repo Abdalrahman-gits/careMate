@@ -18,7 +18,7 @@ const FilterBtn = styled.div`
   align-items: center;
 
   background-color: var(--bg-ligt-gray);
-  padding: 2rem 2.4rem;
+  padding: var(--btn-lg-pd);
   border-radius: var(--border-radius-lg);
   cursor: pointer;
 
