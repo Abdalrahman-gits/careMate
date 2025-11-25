@@ -70,12 +70,10 @@ const GlobalStyles = createGlobalStyle`
   --container-sm-pd: 1.2rem;
   --section-lg-pt: 12rem;
   --section-pb: 4.4rem;
+  --btn-lg-pd: 1.4rem 3rem;
+  --btn-sm-pd: 0.8rem 2rem;
   --section-row-gap: 4.8rem;
   --section-col-gap: 1.6rem;
-
-  /* Heights */
-  --header-h-lg: 7.8rem;
-  --header-h-sm: 7.6rem;
 
   /* Heights */
   --header-h-lg: 7.8rem;
@@ -84,15 +82,20 @@ const GlobalStyles = createGlobalStyle`
   /* Colors */
   --primary-green: #1C4A2A;
 
+  /* Backgrounds-colors */
   --bg-beige: #C6B09A;
   --bg-gray: #464C48;
   --bg-ligt-gray: #f5f5f5;
   --bg-card: #f8fcf9;
-
+  
+  /* Colors */
   --color-green: #0e2515;
   --color-muted: #8c8c8c;
   --color-light-white: rgba(255, 255, 255, 70%);
+
+  /* Border-colors */
   --border-color: #e0e8e0;
+  --footer-border-color: #DEDEDE;
 
 }
 
