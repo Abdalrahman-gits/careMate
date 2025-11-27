@@ -52,7 +52,7 @@ function FilterColumn({ type = "dropdown", label, value, icon: Icon }) {
         <p className="filter-type">{label}</p>
         <FilterBtn type="search">
           <IoMdSearch />
-          <input type="text" placeholder="Search..." />
+          <input type="search" placeholder="Search..." />
         </FilterBtn>
       </StyledFilterColumn>
     );
