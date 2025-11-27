@@ -72,8 +72,8 @@ const GlobalStyles = createGlobalStyle`
   --section-pb: 4.4rem;
   --btn-lg-pd: 1.4rem 3rem;
   --btn-sm-pd: 0.8rem 2rem;
-  --section-row-gap: 4.8rem;
-  --section-col-gap: 1.6rem;
+  --section-lg-gap: 4.8rem;
+  --section-sm-gap: 1.6rem;
 
   /* Heights */
   --header-h-lg: 7.8rem;

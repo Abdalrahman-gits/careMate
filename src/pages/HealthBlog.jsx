@@ -1,5 +1,4 @@
 import BgHealthBlog from "../assets/BgHealthBlog.png";
-import AvailableDoctors from "../ui/AvailableDoctors";
 import Hero from "../ui/Hero";
 import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";
@@ -7,6 +6,7 @@ import FilterColumn from "../ui/FilterColumn";
 import FilterBox from "../ui/FilterBox";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
+import BlogList from "../ui/BlogList";
 
 function HealthBlog() {
   return (
@@ -19,13 +19,13 @@ function HealthBlog() {
       />
 
       <SectionLayout paddingTopMobile="0">
-        <FilterBox title="Find a doctor at your own ease">
+        <FilterBox title="Find Answers to Your Health Questions">
           <FilterColumn label="Category" value="All" icon={RiStethoscopeLine} />
           <FilterColumn label="Date" value="Feb-May" icon={BsHourglassSplit} />
           <FilterColumn label="Keyword" value="2-10 years" type="search" />
         </FilterBox>
         <SectionHeader title="Health Blog" subTitle="Read our latest news." />
-        <AvailableDoctors />
+        <BlogList />
       </SectionLayout>
     </>
   );

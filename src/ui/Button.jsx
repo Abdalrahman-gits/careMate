@@ -39,6 +39,11 @@ const sizes = {
 };
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
   ${({ size = "small" }) => sizes[size]};
   border-radius: var(--border-radius-md);
   text-transform: capitalize;
