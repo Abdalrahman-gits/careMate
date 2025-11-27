@@ -9,7 +9,7 @@ const StyledDoctorCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--section-row-gap);
+  gap: var(--section-lg-gap);
 
   box-shadow: 5px 4px 10px -12px var(--color-muted),
     -5px -4px 10px -12px var(--color-muted),
@@ -27,7 +27,7 @@ const DoctorInfo = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: var(--section-col-gap);
+  gap: var(--section-sm-gap);
 
   & h2 {
     font-weight: 600;
