@@ -3,6 +3,7 @@ import doctor1 from "../assets/doctor1.png";
 import Button from "./Button";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
+import Wrapper from "./Wrapper";
 
 const StyledDoctorCard = styled.div`
   display: flex;
@@ -32,17 +33,6 @@ const DoctorInfo = styled.div`
   & h2 {
     font-weight: 600;
   }
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${({ gapsize }) => (gapsize === "smaller" ? "0.5rem" : "1.6rem")};
-
-  font-size: 1.2rem;
-  color: var(--color-muted);
-  text-transform: capitalize;
 `;
 
 function AvailableDoctorCard() {
