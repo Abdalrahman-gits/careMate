@@ -5,6 +5,9 @@ import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";
 import FilterColumn from "../ui/FilterColumn";
 import FilterBox from "../ui/FilterBox";
+import { BsHourglassSplit } from "react-icons/bs";
+import { FaDollarSign, FaStar } from "react-icons/fa";
+import { RiStethoscopeLine } from "react-icons/ri";
 
 function Doctors() {
   return (
@@ -18,10 +21,18 @@ function Doctors() {
 
       <SectionLayout paddingTopMobile="0">
         <FilterBox title="Find a doctor at your own ease">
-          <FilterColumn label="Specialty" value="Dentist" />
-          <FilterColumn label="Rating" value="5" />
-          <FilterColumn label="Experience" value="2-10 years" />
-          <FilterColumn label="Booking Fee" value="No" />
+          <FilterColumn
+            label="Specialty"
+            value="Dentist"
+            icon={RiStethoscopeLine}
+          />
+          <FilterColumn label="Rating" value="5" icon={FaStar} />
+          <FilterColumn
+            label="Experience"
+            value="2-10 years"
+            icon={BsHourglassSplit}
+          />
+          <FilterColumn label="Booking Fee" value="No" icon={FaDollarSign} />
         </FilterBox>
         <SectionHeader
           title="(X) doctors available"

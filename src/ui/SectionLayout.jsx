@@ -6,7 +6,7 @@ const StyledSectionLayout = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--section-row-gap);
+  gap: var(--section-lg-gap);
 
   padding-top: ${({ paddingTopMobile = "6" }) => `${paddingTopMobile}rem`};
   padding-bottom: var(--section-pb);

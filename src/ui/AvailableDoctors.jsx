@@ -4,8 +4,8 @@ import AvailableDoctorCard from "./AvailableDoctorCard";
 const StyledDoctorsList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  row-gap: var(--section-row-gap);
-  column-gap: var(--section-col-gap);
+  row-gap: var(--section-lg-gap);
+  column-gap: var(--section-sm-gap);
 
   @media (max-width: 575px) {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
