@@ -92,6 +92,7 @@ const GlobalStyles = createGlobalStyle`
   --color-green: #0e2515;
   --color-muted: #8c8c8c;
   --color-light-white: rgba(255, 255, 255, 70%);
+  --color-rate-number: #439C5E;
 
   /* Border-colors */
   --border-color: #e0e8e0;
