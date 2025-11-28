@@ -24,14 +24,6 @@ function SignupForm() {
           Login.
         </button>
       </FormSubTitle>
-      <FormRow label="role">
-        <InputWithIcon
-          icon={FaUser}
-          type="text"
-          id="role"
-          placeholder="Select Role"
-        />
-      </FormRow>
       <FormRow label="name">
         <InputWithIcon
           icon={FaRegIdCard}
