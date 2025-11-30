@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdAlternateEmail } from "react-icons/md";
+import { loginSchema } from "./loginSchema";
+
 import Button from "../../ui/Button";
 import FormSubTitle from "../../ui/FormSubTitle";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import InputWithIcon from "../../ui/InputWithIcon";
 import PasswordInput from "../../ui/PasswordInput";
-import { loginSchema } from "./loginSchema";
 
 function LoginForm() {
   const [userData, setUserData] = useState({
