@@ -28,9 +28,12 @@ function SignupForm() {
   const navigate = useNavigate();
 
   function handleChange(e) {
+    // get field name and it's value
     const { id: name, value } = e.target;
 
+    // controls element
     setUserData((data) => ({ ...data, [name]: value }));
+    // remove error message from the field while typing again
     setErrMessages((errs) => ({ ...errs, [name]: "" }));
   }
 
@@ -42,14 +45,17 @@ function SignupForm() {
 
     if (error) {
       const errorObj = {};
+      // assign error messages in "errorObj"
       error.details.forEach(
         (field) => (errorObj[field.path[0]] = field.message)
       );
 
+      // set error messages
       setErrMessages(() => errorObj);
       return;
     }
 
+    // resets user data fields
     setUserData(() => ({ name: "", phone: "", email: "", password: "" }));
 
     console.log("submit success");

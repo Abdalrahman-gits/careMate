@@ -44,7 +44,7 @@ function LoginForm() {
         (field) => (errorObj[field.path[0]] = field.message)
       );
 
-      // set errors
+      // set error messages
       setErrMessages(() => errorObj);
       return;
     }
