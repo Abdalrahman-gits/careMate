@@ -21,6 +21,10 @@ function LoginForm() {
   });
   const navigate = useNavigate();
 
+  function handleReset() {
+    setUserData(() => ({ email: "", password: "" }));
+  }
+
   function handleChange(e) {
     // get field name and it's value
     const { id: name, value } = e.target;
@@ -50,7 +54,7 @@ function LoginForm() {
     }
 
     // resets user data fields
-    setUserData(() => ({ email: "", password: "" }));
+    handleReset();
 
     console.log("login success");
   }
@@ -78,10 +82,15 @@ function LoginForm() {
       <FormRow label="password" error={errMessages.password}>
         <PasswordInput value={userData.password} onChange={handleChange} />
       </FormRow>
-      <Button variation="primary" size="large" width="100%">
+      <Button type="submit" variation="primary" size="large" width="100%">
         Submit
       </Button>
-      <Button variation="beigeBtn" size="large" width="100%">
+      <Button
+        type="reset"
+        variation="beigeBtn"
+        size="large"
+        width="100%"
+        onClick={handleReset}>
         Reset
       </Button>
     </Form>

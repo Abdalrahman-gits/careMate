@@ -27,6 +27,10 @@ function SignupForm() {
   });
   const navigate = useNavigate();
 
+  function handleReset() {
+    setUserData(() => ({ name: "", phone: "", email: "", password: "" }));
+  }
+
   function handleChange(e) {
     // get field name and it's value
     const { id: name, value } = e.target;
@@ -56,7 +60,7 @@ function SignupForm() {
     }
 
     // resets user data fields
-    setUserData(() => ({ name: "", phone: "", email: "", password: "" }));
+    handleReset();
 
     console.log("submit success");
   }
@@ -106,7 +110,12 @@ function SignupForm() {
       <Button type="submit" variation="primary" size="large" width="100%">
         Submit
       </Button>
-      <Button variation="beigeBtn" size="large" width="100%">
+      <Button
+        type="reset"
+        variation="beigeBtn"
+        size="large"
+        width="100%"
+        onClick={handleReset}>
         Reset
       </Button>
     </Form>
