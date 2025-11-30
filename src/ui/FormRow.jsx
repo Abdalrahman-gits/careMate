@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ErrorMessage from "./ErrorMessage";
 
 const StyledFormRow = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ function FormRow({ label, error, children }) {
       <label htmlFor={label}>{label}</label>
       <div>
         {children}
-        {error && <p>{error}</p>}
+        {error && <ErrorMessage message={error} />}
       </div>
     </StyledFormRow>
   );
