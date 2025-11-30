@@ -12,6 +12,7 @@ function PasswordInput({ ...props }) {
         type={showPassword ? "text" : "password"}
         id="password"
         placeholder="Password"
+        {...props}
       />
       <IconWrapper>
         <FaLock />

@@ -87,12 +87,14 @@ const GlobalStyles = createGlobalStyle`
   --bg-gray: #464C48;
   --bg-ligt-gray: #f5f5f5;
   --bg-card: #f8fcf9;
+  --bg-error-red: #f2bab9;
   
   /* Colors */
   --color-green: #0e2515;
   --color-muted: #8c8c8c;
   --color-light-white: rgba(255, 255, 255, 70%);
   --color-rate-number: #439C5E;
+  --color-error-red: #dd4848;
 
   /* Border-colors */
   --border-color: #e0e8e0;

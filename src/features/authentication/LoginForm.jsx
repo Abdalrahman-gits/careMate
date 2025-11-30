@@ -15,11 +15,7 @@ function LoginForm() {
       <h2>Login</h2>
       <FormSubTitle>
         <span>Are you a new member?</span>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/auth/register");
-          }}>
+        <button type="button" onClick={() => navigate("/auth/register")}>
           Sign up here.
         </button>
       </FormSubTitle>
