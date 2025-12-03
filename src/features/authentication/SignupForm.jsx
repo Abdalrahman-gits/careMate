@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPhoneAlt, FaRegIdCard } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { signUpSchema } from "./signupSchema";
+import { useFormValidation } from "../../hooks/useFormValidation";
 
 import Button from "../../ui/Button";
 import FormSubTitle from "../../ui/FormSubTitle";
@@ -12,61 +12,21 @@ import InputWithIcon from "../../ui/InputWithIcon";
 import PasswordInput from "../../ui/PasswordInput";
 
 function SignupForm() {
-  const [userData, setUserData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    password: "",
-  });
-
-  const [errMessages, setErrMessages] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    password: "",
-  });
+  const { formData, handleSubmit, handleChange, handleReset, errMessages } =
+    useFormValidation(
+      {
+        name: "",
+        phone: "",
+        email: "",
+        password: "",
+      },
+      signUpSchema
+    );
   const navigate = useNavigate();
 
-  function handleReset() {
-    setUserData(() => ({ name: "", phone: "", email: "", password: "" }));
-  }
-
-  function handleChange(e) {
-    // get field name and it's value
-    const { id: name, value } = e.target;
-
-    // controls element
-    setUserData((data) => ({ ...data, [name]: value }));
-    // remove error message from the field while typing again
-    setErrMessages((errs) => ({ ...errs, [name]: "" }));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const schema = signUpSchema();
-    const { error } = schema.validate(userData, { abortEarly: false });
-
-    if (error) {
-      const errorObj = {};
-      // assign error messages in "errorObj"
-      error.details.forEach(
-        (field) => (errorObj[field.path[0]] = field.message)
-      );
-
-      // set error messages
-      setErrMessages(() => errorObj);
-      return;
-    }
-
-    // resets user data fields
-    handleReset();
-
-    console.log("submit success");
-  }
-
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form
+      onSubmit={(e) => handleSubmit(e, () => console.log("signup success"))}>
       <h2>Sign Up</h2>
       <FormSubTitle>
         <span>Already a member?</span>
@@ -80,7 +40,7 @@ function SignupForm() {
           type="text"
           id="name"
           placeholder="Enter your name"
-          value={userData.name}
+          value={formData?.name}
           onChange={handleChange}
         />
       </FormRow>
@@ -90,7 +50,7 @@ function SignupForm() {
           type="tel"
           id="phone"
           placeholder="Phone number"
-          value={userData.phone}
+          value={formData?.phone}
           onChange={handleChange}
         />
       </FormRow>
@@ -100,12 +60,12 @@ function SignupForm() {
           type="email"
           id="email"
           placeholder="Email address"
-          value={userData.email}
+          value={formData?.email}
           onChange={handleChange}
         />
       </FormRow>
       <FormRow label="password" error={errMessages.password}>
-        <PasswordInput onChange={handleChange} value={userData.password} />
+        <PasswordInput onChange={handleChange} value={formData?.password} />
       </FormRow>
       <Button type="submit" variation="primary" size="large" width="100%">
         Submit

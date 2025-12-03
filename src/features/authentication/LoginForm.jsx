@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdAlternateEmail } from "react-icons/md";
 import { loginSchema } from "./loginSchema";
+import { useFormValidation } from "../../hooks/useFormValidation";
 
 import Button from "../../ui/Button";
 import FormSubTitle from "../../ui/FormSubTitle";
@@ -11,57 +11,18 @@ import InputWithIcon from "../../ui/InputWithIcon";
 import PasswordInput from "../../ui/PasswordInput";
 
 function LoginForm() {
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [errMessages, setErrMessages] = useState({
-    email: "",
-    password: "",
-  });
+  const { formData, handleSubmit, handleReset, handleChange, errMessages } =
+    useFormValidation(
+      {
+        email: "",
+        password: "",
+      },
+      loginSchema
+    );
   const navigate = useNavigate();
 
-  function handleReset() {
-    setUserData(() => ({ email: "", password: "" }));
-  }
-
-  function handleChange(e) {
-    // get field name and it's value
-    const { id: name, value } = e.target;
-
-    // controls element
-    setUserData((data) => ({ ...data, [name]: value }));
-    // remove error message from the field while typing again
-    setErrMessages((errs) => ({ ...errs, [name]: "" }));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const schema = loginSchema();
-    const { error } = schema.validate(userData, { abortEarly: false });
-
-    if (error) {
-      const errorObj = {};
-      // assign error messages in "errorObj"
-      error.details.forEach(
-        (field) => (errorObj[field.path[0]] = field.message)
-      );
-
-      // set error messages
-      setErrMessages(() => errorObj);
-      return;
-    }
-
-    // resets user data fields
-    handleReset();
-
-    console.log("login success");
-  }
-
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={(e) => handleSubmit(e, () => console.log("login succes"))}>
       <h2>Login</h2>
       <FormSubTitle>
         <span>Are you a new member?</span>
@@ -76,12 +37,12 @@ function LoginForm() {
           type="email"
           id="email"
           placeholder="Email address"
-          value={userData.email}
+          value={formData.email}
           onChange={handleChange}
         />
       </FormRow>
       <FormRow label="password" error={errMessages.password}>
-        <PasswordInput value={userData.password} onChange={handleChange} />
+        <PasswordInput value={formData.password} onChange={handleChange} />
       </FormRow>
       <Button type="submit" variation="primary" size="large" width="100%">
         Submit
