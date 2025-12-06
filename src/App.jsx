@@ -8,6 +8,7 @@ import Reviews from "./pages/Reviews";
 import GlobalStyles from "./styles/GlobalStyles";
 import LoginForm from "./features/authentication/LoginForm";
 import SignupForm from "./features/authentication/SignupForm";
+import Doctor from "./pages/Doctor";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="login" element={<LoginForm />} />
             </Route>
             <Route path="doctors" element={<Doctors />} />
+            <Route path="doctors/:id" element={<Doctor />} />
             <Route path="health-blog" element={<HealthBlog />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>

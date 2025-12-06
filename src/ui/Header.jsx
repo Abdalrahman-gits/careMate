@@ -8,6 +8,10 @@ import { useState } from "react";
 import ButtonContainer from "./ButtonContainer";
 import MobileMenu from "./MobileMenu";
 
+const StyledHeader = styled.header`
+  box-shadow: 0 -5px 10px -1px black;
+`;
+
 const HeaderContainer = styled.div`
   position: relative;
   display: flex;
@@ -73,7 +77,7 @@ function Header() {
   const navigate = useNavigate();
 
   return (
-    <header>
+    <StyledHeader>
       <Container>
         <HeaderContainer>
           <Logo />
@@ -113,7 +117,7 @@ function Header() {
           {menuOpened && <MobileMenu setMenuOpened={setMenuOpened} />}
         </HeaderContainer>
       </Container>
-    </header>
+    </StyledHeader>
   );
 }
 

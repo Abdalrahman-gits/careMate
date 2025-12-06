@@ -42,6 +42,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: ${({ direction = "row" }) => direction};
   gap: 1rem;
 
   ${({ size = "small" }) => sizes[size]};
