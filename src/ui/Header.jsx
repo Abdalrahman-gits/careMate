@@ -9,6 +9,11 @@ import ButtonContainer from "./ButtonContainer";
 import MobileMenu from "./MobileMenu";
 
 const StyledHeader = styled.header`
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
   box-shadow: 0 -5px 10px -1px black;
 `;
 
