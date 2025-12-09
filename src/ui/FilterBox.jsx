@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Button from "./Button";
-import ButtonContainer from "./ButtonContainer";
 
 const StyledFilterBox = styled.div`
   z-index: 50;
@@ -28,6 +27,14 @@ const FilterFieldsContainer = styled.div`
   align-items: flex-end;
   flex-wrap: wrap;
   gap: 1.6rem;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1.6rem;
+
+  flex-direction: ${({ direction = "horizontal" }) =>
+    direction === "vertical" ? "column" : "row"};
 `;
 
 function FilterBox({ title, children }) {
