@@ -39,13 +39,13 @@ function NavList({ direction = "horizontal" }) {
         <StyledNavLink to="/">Home</StyledNavLink>
       </li>
       <li>
-        <StyledNavLink to="doctors">Appointments</StyledNavLink>
+        <StyledNavLink to="/doctors">Doctors</StyledNavLink>
       </li>
       <li>
-        <StyledNavLink to="health-blog">Health Blog</StyledNavLink>
+        <StyledNavLink to="/health-blog">Health Blog</StyledNavLink>
       </li>
       <li>
-        <StyledNavLink to="reviews">Reviews</StyledNavLink>
+        <StyledNavLink to="/reviews">Reviews</StyledNavLink>
       </li>
     </StyledNavList>
   );
