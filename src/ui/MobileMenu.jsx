@@ -2,6 +2,7 @@ import styled from "styled-components";
 import NavList from "./NavList";
 import { useEffect } from "react";
 import AuthButtons from "./AuthButtons";
+import { useClickOutside } from "../hooks/useClickOutside";
 
 const StyledMobileMenu = styled.div`
   display: flex;
@@ -39,21 +40,10 @@ const StyledMobileMenu = styled.div`
 
 function MobileMenu({ setMenuOpened, isAuthenticated }) {
   // Handle Clicking outside the menu while open
-  useEffect(
-    function () {
-      function handleClickOutsideMenu(e) {
-        if (!e.target.closest(".mobile-menu")) setMenuOpened(false);
-      }
-
-      document.addEventListener("click", handleClickOutsideMenu);
-      return () =>
-        document.removeEventListener("click", handleClickOutsideMenu);
-    },
-    [setMenuOpened]
-  );
+  const { ref } = useClickOutside(() => setMenuOpened(false));
 
   return (
-    <StyledMobileMenu className="mobile-menu">
+    <StyledMobileMenu className="mobile-menu" ref={ref}>
       <NavList direction="vertical" onClick={() => setMenuOpened(false)} />
       {!isAuthenticated && (
         <AuthButtons

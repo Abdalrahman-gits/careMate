@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import styled, { css } from "styled-components";
 import { useClickOutside } from "../hooks/useClickOutside";
