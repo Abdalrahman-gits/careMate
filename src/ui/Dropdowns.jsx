@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import styled, { css } from "styled-components";
+import { useClickOutside } from "../hooks/useClickOutside";
 
 const Menu = styled.div`
   position: relative;
@@ -77,7 +78,9 @@ function Dropdowns({ children }) {
 function Toggler({ children, menuId }) {
   const { close, open, openId } = useContext(DropdownsContext);
 
-  function handleToggle() {
+  function handleToggle(e) {
+    e.stopPropagation();
+
     if (openId) close();
     else open(menuId);
   }
@@ -91,11 +94,12 @@ function Toggler({ children, menuId }) {
 }
 
 function List({ children, menuId }) {
-  const { openId } = useContext(DropdownsContext);
+  const { openId, close } = useContext(DropdownsContext);
+  const { ref } = useClickOutside(close);
 
   if (openId !== menuId) return null;
 
-  return <StyledList>{children}</StyledList>;
+  return <StyledList ref={ref}>{children}</StyledList>;
 }
 
 function Item({ children, onClick }) {
