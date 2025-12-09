@@ -25,8 +25,14 @@ async function getCurrentUser() {
 
   const { data, error } = await supabase.auth.getUser();
   if (error) throw new Error("couldn't get user");
+  console.log(data);
 
   return data;
 }
 
-export { signup, getCurrentUser };
+async function logout() {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw new Error("something went wrong during logout");
+}
+
+export { signup, getCurrentUser, logout };

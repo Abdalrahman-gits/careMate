@@ -10,9 +10,8 @@ function useSignup() {
   const { mutate: signup, isPending } = useMutation({
     mutationFn: signUpApi,
     onSuccess: (data) => {
-      console.log(data);
       toast.success("Account created successfully");
-      queryClient.setQueryData(["user"], data.user);
+      queryClient.setQueryData(["user"], data);
       navigate("/doctors");
     },
     onError: (err) => {

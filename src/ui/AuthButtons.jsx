@@ -5,12 +5,13 @@ import Button from "./Button";
 const ButtonContainer = styled.div`
   display: flex;
   gap: 1.6rem;
+  align-items: center;
 
   flex-direction: ${({ direction = "horizontal" }) =>
     direction === "vertical" ? "column" : "row"};
 `;
 
-function AuthButtons({ direction }) {
+function AuthButtons({ direction, closeMenu }) {
   const navigate = useNavigate();
 
   return (
@@ -19,6 +20,7 @@ function AuthButtons({ direction }) {
         variation="bordered"
         onClick={(e) => {
           e.preventDefault();
+          closeMenu?.();
           navigate("auth/login");
         }}>
         login
@@ -27,6 +29,7 @@ function AuthButtons({ direction }) {
         variation="primary"
         onClick={(e) => {
           e.preventDefault();
+          closeMenu?.();
           navigate("auth/register");
         }}>
         register

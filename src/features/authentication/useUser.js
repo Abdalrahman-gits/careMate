@@ -5,6 +5,7 @@ function useUser() {
   const { data: user, isPending } = useQuery({
     queryKey: ["user"],
     queryFn: getCurrentUser,
+    staleTime: Infinity,
   });
 
   return {

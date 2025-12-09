@@ -15,7 +15,7 @@ const StyledAvatar = styled.div`
   & span {
     display: none;
 
-    @media (min-width: 568px) {
+    @media (min-width: 991px) {
       display: inline;
     }
   }

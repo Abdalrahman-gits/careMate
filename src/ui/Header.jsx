@@ -1,14 +1,16 @@
+import { useState } from "react";
+import { useLogout } from "../features/authentication/useLogout";
+import { useAuth } from "../contexts/AuthContext";
+
 import Logo from "./Logo";
-import Button from "./Button";
+import SpinnerMini from "./SpinnerMini";
 import Container from "./Container";
 import styled from "styled-components";
 import NavList from "./NavList";
-import { useState } from "react";
 import MobileMenu from "./MobileMenu";
 import BurgerIcon from "./BurgerIcon";
 import Dropdowns from "./Dropdowns";
 import AuthButtons from "./AuthButtons";
-import { useAuth } from "../contexts/AuthContext";
 import UserAvatar from "../features/authentication/UserAvatar";
 
 const StyledHeader = styled.header`
@@ -44,12 +46,20 @@ const HeaderContent = styled.div`
 const HeaderActions = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.6rem;
+`;
+const HideMobile = styled.div`
+  @media (max-width: 990px) {
+    display: none;
+  }
 `;
 
 function Header() {
   const [menuOpened, setMenuOpened] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isPending: isLogin } = useAuth();
+  const { logout, isPending: isLogout } = useLogout();
+
+  const isLoading = isLogin || isLogout;
 
   return (
     <StyledHeader>
@@ -61,20 +71,27 @@ function Header() {
               <NavList />
             </HeaderContent>
             <HeaderActions>
-              {isAuthenticated ? (
+              {isLoading && <SpinnerMini />}
+
+              {!isLoading && isAuthenticated && (
+                // Display userAvatar or login-register buttons
                 <Dropdowns.Menu>
                   <Dropdowns.Toggler menuId="user-avatar">
                     <UserAvatar />
                   </Dropdowns.Toggler>
 
                   <Dropdowns.List menuId="user-avatar">
-                    <Dropdowns.Item>option1</Dropdowns.Item>
-                    <Dropdowns.Item>option2</Dropdowns.Item>
-                    <Dropdowns.Item>option3</Dropdowns.Item>
+                    <Dropdowns.Item>Profile</Dropdowns.Item>
+                    <Dropdowns.Item>My Appointments</Dropdowns.Item>
+                    <Dropdowns.Item onClick={logout}>Logout</Dropdowns.Item>
                   </Dropdowns.List>
                 </Dropdowns.Menu>
-              ) : (
-                <AuthButtons />
+              )}
+
+              {!isLoading && !isAuthenticated && (
+                <HideMobile>
+                  <AuthButtons />
+                </HideMobile>
               )}
 
               <BurgerIcon
@@ -87,7 +104,12 @@ function Header() {
                 }}
               />
             </HeaderActions>
-            {menuOpened && <MobileMenu setMenuOpened={setMenuOpened} />}
+            {menuOpened && (
+              <MobileMenu
+                setMenuOpened={setMenuOpened}
+                isAuthenticated={isAuthenticated}
+              />
+            )}
           </HeaderContainer>
         </Container>
       </Dropdowns>
