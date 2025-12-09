@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 const StyledBurgerIcon = styled.button`
   padding: 0.8rem;
-  background-color: var(--bg-card);
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius-md);
+  background: none;
 
   display: flex;
   justify-content: center;

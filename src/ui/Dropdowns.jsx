@@ -14,15 +14,8 @@ const StyledToggler = styled.button`
   align-items: center;
   gap: 0.8rem;
   border-radius: var(--border-radius-md);
-  background-color: ${({ isOpened }) =>
-    isOpened ? "var(--bg-ligt-gray)" : "white"};
-
-  padding: 0.8rem;
+  background-color: white;
   transition: 0.3s background-color;
-
-  &:hover {
-    background-color: var(--bg-ligt-gray);
-  }
 
   & > svg {
     transition: 0.3s all;
@@ -34,12 +27,13 @@ const StyledToggler = styled.button`
 
 const StyledList = styled.ul`
   position: absolute;
-  width: 100%;
+  min-width: max-content;
+  z-index: 1;
+  right: 0;
   top: calc(100% + 0.5rem);
   border-radius: 8px;
   overflow: hidden;
   background-color: white;
-  border: 1px solid var(--border-color);
 `;
 
 const StyledButton = styled.button`
@@ -47,6 +41,7 @@ const StyledButton = styled.button`
   padding: 1rem 1.6rem;
   background: none;
   transition: 0.3s background-color;
+  border-bottom: 1px solid var(--color-grey-300);
 
   &:hover {
     background-color: var(--bg-ligt-gray);
@@ -92,10 +87,16 @@ function List({ children, menuId }) {
   return <StyledList>{children}</StyledList>;
 }
 
-function Item({ children }) {
+function Item({ children, onClick }) {
+  const { close } = useContext(DropdownsContext);
+
+  function handleClick() {
+    onClick?.();
+    close();
+  }
   return (
     <li>
-      <StyledButton>{children}</StyledButton>
+      <StyledButton onClick={handleClick}>{children}</StyledButton>
     </li>
   );
 }
