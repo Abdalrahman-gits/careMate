@@ -19,6 +19,19 @@ async function signup(userData) {
   return data;
 }
 
+async function login(userData) {
+  const { email, password } = userData;
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
 async function getCurrentUser() {
   const { data: session } = await supabase.auth.getSession();
   if (!session?.session) return null;
@@ -35,4 +48,4 @@ async function logout() {
   if (error) throw new Error("something went wrong during logout");
 }
 
-export { signup, getCurrentUser, logout };
+export { signup, login, getCurrentUser, logout };

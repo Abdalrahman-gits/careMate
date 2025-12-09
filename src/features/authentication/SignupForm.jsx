@@ -27,10 +27,11 @@ function SignupForm() {
     );
   const navigate = useNavigate();
   const { signup, isPending } = useSignup();
-  useUser();
 
   function onSubmit() {
-    signup(formData);
+    signup(formData, {
+      onSuccess: () => handleReset(),
+    });
   }
 
   return (
