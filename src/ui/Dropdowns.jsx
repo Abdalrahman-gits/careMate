@@ -30,21 +30,32 @@ const StyledList = styled.ul`
   min-width: max-content;
   z-index: 1;
   right: 0;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + 1rem);
   border-radius: 8px;
   overflow: hidden;
-  background-color: white;
+  background-color: var(--bg-ligt-gray);
+  transform: translateX(10px);
+  position: absolute;
+  min-width: max-content;
+  z-index: 1;
+  right: 0;
+  top: calc(100% + 1rem);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--bg-ligt-gray);
+  transform: translateX(10px);
+  box-shadow: 1px 1px 10px -10px black, -1px -1px 10px -10px black,
+    -1px 1px 10px -10px black, 1px -1px 10px -10px black;
 `;
 
 const StyledButton = styled.button`
   width: 100%;
   padding: 1rem 1.6rem;
   background: none;
-  transition: 0.3s background-color;
-  border-bottom: 1px solid var(--color-grey-300);
+  transition: 0.3s transform;
 
   &:hover {
-    background-color: var(--bg-ligt-gray);
+    transform: translateX(4px);
   }
 `;
 
