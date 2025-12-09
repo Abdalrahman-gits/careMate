@@ -6,12 +6,11 @@ import AuthButtons from "./AuthButtons";
 const StyledMobileMenu = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3.6rem;
+  gap: 3rem;
   background-color: white;
   box-shadow: 0px 5px 10px -7px black;
 
   position: absolute;
-  top: 100%;
   inset-inline: 0;
   padding: 2rem;
   border: 2px solid var(--border-color);
@@ -27,18 +26,18 @@ const StyledMobileMenu = styled.div`
 
   @keyframes fadein {
     0% {
-      transform: translateY(10px);
+      top: calc(100% + 1rem);
       opacity: 0;
     }
 
     100% {
-      transform: translateY(0px);
+      top: 100%;
       opacity: 1;
     }
   }
 `;
 
-function MobileMenu({ setMenuOpened }) {
+function MobileMenu({ setMenuOpened, isAuthenticated }) {
   // Handle Clicking outside the menu while open
   useEffect(
     function () {
@@ -56,7 +55,7 @@ function MobileMenu({ setMenuOpened }) {
   return (
     <StyledMobileMenu className="mobile-menu">
       <NavList direction="vertical" />
-      <AuthButtons direction="vertical" />
+      {!isAuthenticated && <AuthButtons direction="vertical" />}
     </StyledMobileMenu>
   );
 }

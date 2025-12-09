@@ -48,6 +48,11 @@ const HeaderActions = styled.div`
   align-items: center;
   gap: 1.6rem;
 `;
+const HideMobile = styled.div`
+  @media (max-width: 990px) {
+    display: none;
+  }
+`;
 
 function Header() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -83,7 +88,11 @@ function Header() {
                 </Dropdowns.Menu>
               )}
 
-              {!isLoading && !isAuthenticated && <AuthButtons />}
+              {!isLoading && !isAuthenticated && (
+                <HideMobile>
+                  <AuthButtons />
+                </HideMobile>
+              )}
 
               <BurgerIcon
                 isActive={menuOpened}
@@ -95,7 +104,12 @@ function Header() {
                 }}
               />
             </HeaderActions>
-            {menuOpened && <MobileMenu setMenuOpened={setMenuOpened} />}
+            {menuOpened && (
+              <MobileMenu
+                setMenuOpened={setMenuOpened}
+                isAuthenticated={isAuthenticated}
+              />
+            )}
           </HeaderContainer>
         </Container>
       </Dropdowns>

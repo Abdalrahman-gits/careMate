@@ -5,6 +5,7 @@ import Button from "./Button";
 const ButtonContainer = styled.div`
   display: flex;
   gap: 1.6rem;
+  align-items: center;
 
   flex-direction: ${({ direction = "horizontal" }) =>
     direction === "vertical" ? "column" : "row"};

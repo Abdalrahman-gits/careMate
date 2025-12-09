@@ -9,6 +9,7 @@ const StyledNavList = styled.ul`
     direction === "vertical" &&
     css`
       flex-direction: column;
+      align-items: center;
       gap: 1.5rem;
     `}
 `;
