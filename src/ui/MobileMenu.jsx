@@ -54,8 +54,13 @@ function MobileMenu({ setMenuOpened, isAuthenticated }) {
 
   return (
     <StyledMobileMenu className="mobile-menu">
-      <NavList direction="vertical" />
-      {!isAuthenticated && <AuthButtons direction="vertical" />}
+      <NavList direction="vertical" onClick={() => setMenuOpened(false)} />
+      {!isAuthenticated && (
+        <AuthButtons
+          direction="vertical"
+          closeMenu={() => setMenuOpened(false)}
+        />
+      )}
     </StyledMobileMenu>
   );
 }

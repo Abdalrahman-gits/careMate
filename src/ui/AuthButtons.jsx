@@ -11,7 +11,7 @@ const ButtonContainer = styled.div`
     direction === "vertical" ? "column" : "row"};
 `;
 
-function AuthButtons({ direction }) {
+function AuthButtons({ direction, closeMenu }) {
   const navigate = useNavigate();
 
   return (
@@ -20,6 +20,7 @@ function AuthButtons({ direction }) {
         variation="bordered"
         onClick={(e) => {
           e.preventDefault();
+          closeMenu?.();
           navigate("auth/login");
         }}>
         login
@@ -28,6 +29,7 @@ function AuthButtons({ direction }) {
         variation="primary"
         onClick={(e) => {
           e.preventDefault();
+          closeMenu?.();
           navigate("auth/register");
         }}>
         register

@@ -43,21 +43,23 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function NavList({ direction = "horizontal" }) {
+const Links = [
+  { path: "/", pathName: "Home" },
+  { path: "/doctors", pathName: "Doctors" },
+  { path: "/health-blog", pathName: "Health Blog" },
+  { path: "/reviews", pathName: "Reviews" },
+];
+
+function NavList({ direction = "horizontal", onClick }) {
   return (
     <StyledNavList direction={direction}>
-      <li>
-        <StyledNavLink to="/">Home</StyledNavLink>
-      </li>
-      <li>
-        <StyledNavLink to="/doctors">Doctors</StyledNavLink>
-      </li>
-      <li>
-        <StyledNavLink to="/health-blog">Health Blog</StyledNavLink>
-      </li>
-      <li>
-        <StyledNavLink to="/reviews">Reviews</StyledNavLink>
-      </li>
+      {Links.map((link) => (
+        <li>
+          <StyledNavLink to={link.path} onClick={onClick}>
+            {link.pathName}
+          </StyledNavLink>
+        </li>
+      ))}
     </StyledNavList>
   );
 }
