@@ -10,6 +10,7 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import InputWithIcon from "../../ui/InputWithIcon";
 import PasswordInput from "../../ui/PasswordInput";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const initUserData = {
   email: "",
@@ -63,7 +64,7 @@ function LoginForm() {
         size="large"
         width="100%"
         disabled={isPending}>
-        {isPending ? <SpinnerMinni /> : "Login"}
+        {isPending ? <SpinnerMini /> : "Login"}
       </Button>
       <Button
         type="reset"
