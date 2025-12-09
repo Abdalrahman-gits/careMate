@@ -37,9 +37,6 @@ function useFormValidation(initialValues, schemaFun) {
     }
 
     callback();
-
-    // resets user data fields
-    handleReset();
   }
 
   return { handleSubmit, handleChange, handleReset, formData, errMessages };
