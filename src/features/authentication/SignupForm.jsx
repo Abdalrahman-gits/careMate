@@ -12,7 +12,6 @@ import FormRow from "../../ui/FormRow";
 import InputWithIcon from "../../ui/InputWithIcon";
 import PasswordInput from "../../ui/PasswordInput";
 import SpinnerMini from "../../ui/SpinnerMini";
-import { useUser } from "./useUser";
 
 function SignupForm() {
   const { formData, handleSubmit, handleChange, handleReset, errMessages } =

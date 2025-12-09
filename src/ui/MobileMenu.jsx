@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import NavList from "./NavList";
-import { useEffect } from "react";
 import AuthButtons from "./AuthButtons";
 import { useClickOutside } from "../hooks/useClickOutside";
 
