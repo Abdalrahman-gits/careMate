@@ -1,5 +1,5 @@
 import doctorsImage from "../assets/AppointmentImage.png";
-import AvailableDoctors from "../ui/AvailableDoctors";
+import AvailableDoctors from "../features/doctors/AvailableDoctors";
 import Hero from "../ui/Hero";
 import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";

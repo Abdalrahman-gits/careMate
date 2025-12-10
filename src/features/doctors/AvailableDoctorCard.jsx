@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import doctor1 from "../assets/doctor1.png";
-import Button from "./Button";
+import doctor1 from "../../assets/doctor1.png";
+import Button from "../../ui/Button";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
-import Wrapper from "./Wrapper";
+import Wrapper from "../../ui/Wrapper";
 
 const StyledDoctorCard = styled.div`
   display: flex;
