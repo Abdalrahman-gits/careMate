@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { DropdownsContext } from "./Dropdowns";
 
 const StyledBurgerIcon = styled.button`
   padding: 0.8rem;
@@ -37,10 +39,24 @@ const StyledBurgerIcon = styled.button`
   }
 `;
 
-function BurgerIcon({ onClick, isActive }) {
+function BurgerIcon({ setMenuOpened, isActive }) {
+  const { close } = useContext(DropdownsContext);
+
+  function handleClick(e) {
+    // Prevent this click from bubbling to the document listener
+    // which is used to close the mobile menu when clicking outside
+    e.stopPropagation();
+    setMenuOpened((val) => {
+      if (!val) {
+        close();
+        return true;
+      } else return false;
+    });
+  }
+
   return (
     <StyledBurgerIcon
-      onClick={onClick}
+      onClick={handleClick}
       className={`${isActive ? "active" : ""}`}>
       <span></span>
       <span></span>

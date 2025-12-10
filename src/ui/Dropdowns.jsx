@@ -60,28 +60,32 @@ const StyledButton = styled.button`
   }
 `;
 
-const DropdownsContext = createContext();
+export const DropdownsContext = createContext();
 
-function Dropdowns({ children }) {
+function Dropdowns({ children, closeMobileMenu }) {
   const [openId, setOpenId] = useState("");
 
   const close = () => setOpenId("");
   const open = setOpenId;
 
   return (
-    <DropdownsContext.Provider value={{ openId, open, close }}>
+    <DropdownsContext.Provider value={{ openId, open, close, closeMobileMenu }}>
       {children}
     </DropdownsContext.Provider>
   );
 }
 
 function Toggler({ children, menuId }) {
-  const { close, open, openId } = useContext(DropdownsContext);
+  const { close, open, openId, closeMobileMenu } = useContext(DropdownsContext);
 
   function handleToggle(e) {
     e.stopPropagation();
 
-    openId && openId === menuId ? close() : open(menuId);
+    if (openId && openId === menuId) close();
+    else {
+      closeMobileMenu();
+      open(menuId);
+    }
   }
 
   return (
