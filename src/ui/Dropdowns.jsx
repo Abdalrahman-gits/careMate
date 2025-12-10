@@ -81,12 +81,11 @@ function Toggler({ children, menuId }) {
   function handleToggle(e) {
     e.stopPropagation();
 
-    if (openId) close();
-    else open(menuId);
+    openId && openId === menuId ? close() : open(menuId);
   }
 
   return (
-    <StyledToggler onClick={handleToggle} isOpened={openId}>
+    <StyledToggler onClick={handleToggle} isOpened={openId === menuId}>
       {children}
       <FaChevronDown />
     </StyledToggler>
@@ -95,7 +94,7 @@ function Toggler({ children, menuId }) {
 
 function List({ children, menuId }) {
   const { openId, close } = useContext(DropdownsContext);
-  const { ref } = useClickOutside(close);
+  const { ref } = useClickOutside(close, false);
 
   if (openId !== menuId) return null;
 

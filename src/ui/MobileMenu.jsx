@@ -39,7 +39,7 @@ const StyledMobileMenu = styled.div`
 
 function MobileMenu({ setMenuOpened, isAuthenticated }) {
   // Handle Clicking outside the menu while open
-  const { ref } = useClickOutside(() => setMenuOpened(false));
+  const { ref } = useClickOutside(() => setMenuOpened(false), false);
 
   return (
     <StyledMobileMenu className="mobile-menu" ref={ref}>
