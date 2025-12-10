@@ -63,7 +63,7 @@ function Header() {
 
   return (
     <StyledHeader>
-      <Dropdowns>
+      <Dropdowns closeMobileMenu={() => setMenuOpened(false)}>
         <Container>
           <HeaderContainer>
             <Logo />
@@ -94,15 +94,7 @@ function Header() {
                 </HideMobile>
               )}
 
-              <BurgerIcon
-                isActive={menuOpened}
-                onClick={(e) => {
-                  // Prevent this click from bubbling to the document listener
-                  // which is used to close the mobile menu when clicking outside
-                  e.stopPropagation();
-                  setMenuOpened((val) => !val);
-                }}
-              />
+              <BurgerIcon isActive={menuOpened} setMenuOpened={setMenuOpened} />
             </HeaderActions>
             {menuOpened && (
               <MobileMenu
