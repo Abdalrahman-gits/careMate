@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import AvailableDoctorCard from "./AvailableDoctorCard";
+import { useDoctors } from "./useDoctors";
+import SectionHeader from "../../ui/SectionHeader";
+import Spinner from "../../ui/Spinner";
 
 const StyledDoctorsList = styled.div`
   display: grid;
@@ -13,12 +16,23 @@ const StyledDoctorsList = styled.div`
 `;
 
 function AvailableDoctors() {
+  const { doctors, isPending: isLoading } = useDoctors();
+  const doctorsNum = doctors?.length;
+
+  if (isLoading) return <Spinner />;
+
   return (
-    <StyledDoctorsList>
-      {Array.from({ length: 6 }).map(() => (
-        <AvailableDoctorCard />
-      ))}
-    </StyledDoctorsList>
+    <>
+      <SectionHeader
+        title={`(${doctorsNum}) doctors available`}
+        subTitle="Book appointments with minimum wait-time & verfied doctor details"
+      />
+      <StyledDoctorsList>
+        {doctors.map((doctor) => (
+          <AvailableDoctorCard key={doctor.id} doctor={doctor} />
+        ))}
+      </StyledDoctorsList>
+    </>
   );
 }
 
