@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import doctor1 from "../assets/doctor1.png";
-import Button from "./Button";
+// import doctor1 from "../../assets/doctor1.png";
+import Button from "../../ui/Button";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
-import Wrapper from "./Wrapper";
+import Wrapper from "../../ui/Wrapper";
+import StarRating from "../../ui/StarRating";
 
 const StyledDoctorCard = styled.div`
   display: flex;
@@ -35,31 +36,41 @@ const DoctorInfo = styled.div`
   }
 `;
 
-function AvailableDoctorCard() {
+const Image = styled.img`
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+`;
+
+function AvailableDoctorCard({ doctor }) {
+  const { full_name, rate, experience, speciality, image_url } = doctor;
+
   return (
     <StyledDoctorCard>
       <DoctorInfo>
         {/* Doctor Image */}
-        <img src={doctor1} alt="doctor1" />
+        <Image src={image_url} alt={`${full_name}-image`} />
         {/* info */}
         <div>
-          <h2>Dr Sayed</h2>
+          <h2>{full_name}</h2>
           <Wrapper>
             <Wrapper gapsize="smaller">
               <RiStethoscopeLine />
-              <span>dentist</span>
+              <span>{speciality}</span>
             </Wrapper>
             <Wrapper gapsize="smaller">
               <BsHourglassSplit />
-              <span>(X) Years</span>
+              <span>
+                ({experience}) {experience === 1 ? "Year" : "Years"}
+              </span>
             </Wrapper>
           </Wrapper>
         </div>
 
         {/* rating ⭐ */}
         <Wrapper>
-          <span>Rating:</span>
-          <span>Stars</span>
+          <span>Rating: {rate}</span>
+          <StarRating size={12} isReadOnly={true} defualtRate={rate} />
         </Wrapper>
       </DoctorInfo>
 
