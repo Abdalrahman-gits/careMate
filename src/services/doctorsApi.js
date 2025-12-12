@@ -20,4 +20,19 @@ async function getDoctorInfo(doctorId) {
   return data;
 }
 
-export { getDoctors, getDoctorInfo };
+async function addAppointment(data) {
+  const { error } = await supabase
+    .from("bookings")
+    .insert([
+      {
+        doctor_id: data.doctorId,
+        user_id: data.userId,
+        booking_date: data.date,
+      },
+    ])
+    .select();
+
+  if (error) throw new Error(error.message);
+}
+
+export { getDoctors, getDoctorInfo, addAppointment };

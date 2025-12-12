@@ -1,4 +1,5 @@
 function generateDays(numOfDays = 10, startDate = new Date()) {
+  startDate.setHours(0, 0, 0, 0);
   const days = [];
 
   while (numOfDays--) {

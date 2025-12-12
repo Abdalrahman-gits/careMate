@@ -33,8 +33,8 @@ const Header = styled.h1`
 `;
 
 function Doctor() {
-  const { id } = useParams();
-  const { doctor, isPending } = useDoctorInfo(id);
+  const { id: doctorId } = useParams();
+  const { doctor, isPending } = useDoctorInfo(doctorId);
 
   if (isPending) return <Spinner />;
 
@@ -43,7 +43,7 @@ function Doctor() {
       <Header>Book Appointment: Date & Time</Header>
       <GridContainer>
         <DoctorInfo doctor={doctor} />
-        <AddAppointment />
+        <AddAppointment doctorId={doctorId} />
       </GridContainer>
     </CustomContainer>
   );
