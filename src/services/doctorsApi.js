@@ -35,4 +35,16 @@ async function addAppointment(data) {
   if (error) throw new Error(error.message);
 }
 
-export { getDoctors, getDoctorInfo, addAppointment };
+async function getUserAppointments(userId) {
+  console.log(userId);
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*")
+    .eq("user_id", userId);
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
+export { getDoctors, getDoctorInfo, addAppointment, getUserAppointments };

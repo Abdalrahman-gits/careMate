@@ -18,9 +18,16 @@ const StyledButton = styled(Button)`
   & > span {
     font-size: 1.4rem;
   }
+
+  &:disabled,
+  &:disabled:hover {
+    color: var(--color-muted);
+    background-color: inherit;
+    text-decoration: line-through;
+  }
 `;
 
-function Slot({ date, type, selected, onSelect }) {
+function Slot({ date, type, selected, onSelect, isBooked }) {
   const [dayName, monthName] = date
     .toLocaleDateString([], {
       month: "short",
@@ -43,7 +50,8 @@ function Slot({ date, type, selected, onSelect }) {
             date?.getTime() === selected?.getTime() ? "primary" : "bordered"
           }`}
           size="large"
-          onClick={onSelect}>
+          onClick={onSelect}
+          disabled={isBooked}>
           <span>{time}</span>
         </StyledButton>
       </Item>

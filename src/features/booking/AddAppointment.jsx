@@ -6,7 +6,6 @@ import { generateDays, generateTime } from "../../utils/generateSlots";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAddAppointment } from "../doctors/useAddAppointment";
-import { useAuth } from "../../contexts/AuthContext";
 
 const Label = styled.p`
   font-size: 2rem;
@@ -25,11 +24,10 @@ const ButtonBox = styled.div`
 
 const days = generateDays(7);
 
-function AddAppointment({ doctorId }) {
+function AddAppointment({ doctorId, userId, appointments }) {
   const [selectedDate, setSelectedDate] = useState(days[0]);
   const [selectedTime, setSelectedTime] = useState(null);
-  const { user } = useAuth();
-  const { addAppointment, isPending } = useAddAppointment();
+  const { addAppointment, isPending } = useAddAppointment(userId);
 
   const times = generateTime(selectedDate);
 
@@ -40,8 +38,11 @@ function AddAppointment({ doctorId }) {
     }
 
     const appointData = {
-      userId: user?.user?.id,
+      userId,
       doctorId,
+
+      // Removes z(timezone) from date to store it as it is.
+      // When get it back from server it will be converted to local again
       date: selectedTime.toISOString().slice(0, -1),
     };
 
@@ -75,6 +76,11 @@ function AddAppointment({ doctorId }) {
               type="time"
               selected={selectedTime}
               onSelect={() => setSelectedTime(time)}
+              bookedAppointments={appointments}
+              isBooked={appointments?.some(
+                (book) =>
+                  new Date(book.booking_date).getTime() === time.getTime()
+              )}
             />
           ))}
         </DateList>

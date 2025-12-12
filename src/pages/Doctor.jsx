@@ -5,6 +5,8 @@ import AddAppointment from "../features/booking/AddAppointment";
 import { useDoctorInfo } from "../features/doctors/useDoctorInfo";
 import { useParams } from "react-router-dom";
 import Spinner from "../ui/Spinner";
+import { useAppointments } from "../features/doctors/useAppointments";
+import { useAuth } from "../contexts/AuthContext";
 
 const GridContainer = styled.div`
   display: grid;
@@ -34,16 +36,26 @@ const Header = styled.h1`
 
 function Doctor() {
   const { id: doctorId } = useParams();
-  const { doctor, isPending } = useDoctorInfo(doctorId);
+  const { user } = useAuth();
+  const { doctor, isPending: loadDoctor } = useDoctorInfo(doctorId);
+  const { appointments, isPending: LoadAppointments } = useAppointments(
+    user?.user?.id
+  );
 
-  if (isPending) return <Spinner />;
+  const isLoading = loadDoctor || LoadAppointments;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <CustomContainer>
       <Header>Book Appointment: Date & Time</Header>
       <GridContainer>
         <DoctorInfo doctor={doctor} />
-        <AddAppointment doctorId={doctorId} />
+        <AddAppointment
+          doctorId={doctorId}
+          userId={user?.user?.id}
+          appointments={appointments}
+        />
       </GridContainer>
     </CustomContainer>
   );
