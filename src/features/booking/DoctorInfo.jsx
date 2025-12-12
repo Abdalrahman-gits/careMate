@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import img from "../../assets/doctor1.png";
 import StarRating from "../../ui/StarRating";
 
 const StyledDoctorInfo = styled.div`

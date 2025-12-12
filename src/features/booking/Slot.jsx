@@ -7,7 +7,7 @@ const Item = styled.li`
 `;
 
 const StyledButton = styled(Button)`
-  background-color: inherit;
+  background-color: ${({ variation }) => variation === "bordered" && "inherit"};
   width: 100%;
   gap: 0.5rem;
 
@@ -18,9 +18,16 @@ const StyledButton = styled(Button)`
   & > span {
     font-size: 1.4rem;
   }
+
+  &:disabled,
+  &:disabled:hover {
+    color: var(--color-muted);
+    background-color: inherit;
+    text-decoration: line-through;
+  }
 `;
 
-function Slot({ date, type, onClick }) {
+function Slot({ date, type, selected, onSelect, isBooked }) {
   const [dayName, monthName] = date
     .toLocaleDateString([], {
       month: "short",
@@ -35,22 +42,31 @@ function Slot({ date, type, onClick }) {
     hour12: true,
   });
 
-  if (type === "time")
+  if (type === "time") {
     return (
       <Item>
-        <StyledButton variation="bordered" size="large" onClick={onClick}>
+        <StyledButton
+          variation={`${
+            date?.getTime() === selected?.getTime() ? "primary" : "bordered"
+          }`}
+          size="large"
+          onClick={onSelect}
+          disabled={isBooked}>
           <span>{time}</span>
         </StyledButton>
       </Item>
     );
+  }
 
   return (
     <Item>
       <StyledButton
-        variation="bordered"
+        variation={`${
+          date?.getTime() === selected?.getTime() ? "primary" : "bordered"
+        }`}
         size="large"
         direction="column"
-        onClick={onClick}>
+        onClick={onSelect}>
         <p>{dayName}</p>
         <span>{monthName}</span>
       </StyledButton>
