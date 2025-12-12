@@ -8,4 +8,16 @@ async function getDoctors() {
   return doctors;
 }
 
-export { getDoctors };
+async function getDoctorInfo(doctorId) {
+  const { data, error } = await supabase
+    .from("doctors")
+    .select("*")
+    .eq("id", doctorId)
+    .single();
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
+export { getDoctors, getDoctorInfo };

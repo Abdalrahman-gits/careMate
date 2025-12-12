@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Container from "../ui/Container";
 import DoctorInfo from "../features/booking/DoctorInfo";
 import AddAppointment from "../features/booking/AddAppointment";
+import { useDoctorInfo } from "../features/doctors/useDoctorInfo";
+import { useParams } from "react-router-dom";
+import Spinner from "../ui/Spinner";
 
 const GridContainer = styled.div`
   display: grid;
@@ -30,11 +33,16 @@ const Header = styled.h1`
 `;
 
 function Doctor() {
+  const { id } = useParams();
+  const { doctor, isPending } = useDoctorInfo(id);
+
+  if (isPending) return <Spinner />;
+
   return (
     <CustomContainer>
       <Header>Book Appointment: Date & Time</Header>
       <GridContainer>
-        <DoctorInfo />
+        <DoctorInfo doctor={doctor} />
         <AddAppointment />
       </GridContainer>
     </CustomContainer>

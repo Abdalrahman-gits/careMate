@@ -5,6 +5,7 @@ import { RiStethoscopeLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
 import Wrapper from "../../ui/Wrapper";
 import StarRating from "../../ui/StarRating";
+import { useNavigate } from "react-router-dom";
 
 const StyledDoctorCard = styled.div`
   display: flex;
@@ -43,7 +44,8 @@ const Image = styled.img`
 `;
 
 function AvailableDoctorCard({ doctor }) {
-  const { full_name, rate, experience, speciality, image_url } = doctor;
+  const navigate = useNavigate();
+  const { id, full_name, rate, experience, speciality, image_url } = doctor;
 
   return (
     <StyledDoctorCard>
@@ -52,7 +54,7 @@ function AvailableDoctorCard({ doctor }) {
         <Image src={image_url} alt={`${full_name}-image`} />
         {/* info */}
         <div>
-          <h2>{full_name}</h2>
+          <h2>Dr. {full_name}</h2>
           <Wrapper>
             <Wrapper gapsize="smaller">
               <RiStethoscopeLine />
@@ -75,7 +77,10 @@ function AvailableDoctorCard({ doctor }) {
       </DoctorInfo>
 
       {/* Book Btn */}
-      <Button size="large" variation="bordered">
+      <Button
+        size="large"
+        variation="bordered"
+        onClick={() => navigate(`/doctors/doctor/${id}`)}>
         Book Appointment
       </Button>
     </StyledDoctorCard>
