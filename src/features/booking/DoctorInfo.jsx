@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import img from "../../assets/doctor1.png";
+import StarRating from "../../ui/StarRating";
 
 const StyledDoctorInfo = styled.div`
   grid-column: 1 / -1;
@@ -41,14 +42,16 @@ const DoctorDetails = styled.div`
   }
 `;
 
-function DoctorInfo() {
+function DoctorInfo({ doctor }) {
+  const { full_name, speciality, rate, image_url } = doctor;
+
   return (
     <StyledDoctorInfo>
-      <img src={img} alt="img" />
+      <img src={image_url} alt={`Dr. ${full_name} image`} />
       <DoctorDetails>
-        <h2>Dr.medhat</h2>
-        <span>Dentist</span>
-        <span>rate</span>
+        <h2>Dr. {full_name}</h2>
+        <span>{speciality}</span>
+        <StarRating size={12} defualtRate={rate} isReadOnly={true} />
       </DoctorDetails>
     </StyledDoctorInfo>
   );
