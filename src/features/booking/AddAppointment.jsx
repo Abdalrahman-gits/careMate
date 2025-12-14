@@ -61,7 +61,10 @@ function AddAppointment({ doctorId, userId, appointments }) {
               date={day}
               type="date"
               selected={selectedDate}
-              onSelect={() => setSelectedDate(day)}
+              onSelect={() => {
+                setSelectedDate(day);
+                setSelectedTime(null);
+              }}
             />
           ))}
         </DateList>
@@ -86,13 +89,15 @@ function AddAppointment({ doctorId, userId, appointments }) {
         </DateList>
       </div>
       <ButtonBox>
-        <Button
-          size="large"
-          variation="primary"
-          onClick={handleSelectAppointment}
-          disabled={isPending}>
-          Confirm Appointent
-        </Button>
+        {selectedDate && selectedTime && (
+          <Button
+            size="large"
+            variation="primary"
+            onClick={handleSelectAppointment}
+            disabled={isPending}>
+            Confirm Appointent
+          </Button>
+        )}
       </ButtonBox>
     </>
   );
