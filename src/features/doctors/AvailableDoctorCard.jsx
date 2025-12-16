@@ -65,7 +65,7 @@ function AvailableDoctorCard({ doctor }) {
 
         {/* rating ⭐ */}
         <Wrapper>
-          <span>Rating: {rate}</span>
+          <span>Rating:</span>
           <StarRating size={12} isReadOnly={true} defualtRate={rate} />
         </Wrapper>
       </DoctorInfo>

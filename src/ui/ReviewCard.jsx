@@ -12,8 +12,7 @@ const StyledCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-radius: var(--border-radius-lg);
-  box-shadow: 5px 5px 15px -12px var(--color-muted),
-    -5px 0 15px -12px var(--color-muted);
+  box-shadow: 0px 0px 12px rgb(0, 0, 0, 0.1);
 
   @media (min-width: 991px) {
     flex-direction: row;

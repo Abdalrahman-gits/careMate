@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Container from "../ui/Container";
-import DoctorInfo from "../features/booking/DoctorInfo";
+import DoctorInfo from "../features/doctors/DoctorInfo";
 import AddAppointment from "../features/booking/AddAppointment";
 import { useDoctorInfo } from "../features/doctors/useDoctorInfo";
 import { useParams } from "react-router-dom";
 import Spinner from "../ui/Spinner";
-import { useAppointments } from "../features/doctors/useAppointments";
+import { useAppointments } from "../features/booking/useAppointments";
 import { useAuth } from "../contexts/AuthContext";
 
 const GridContainer = styled.div`

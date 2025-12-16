@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
+import { formatMonthDay, formatTime } from "../../utils/dateFormat";
 
 const Item = styled.li`
   background-color: inherit;
@@ -28,21 +29,11 @@ const StyledButton = styled(Button)`
 `;
 
 function Slot({ date, type, selected, onSelect, isBooked }) {
-  const [dayName, monthName] = date
-    .toLocaleDateString([], {
-      month: "short",
-      weekday: "short",
-      day: "2-digit",
-    })
-    .split(", ");
-
-  const time = date.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
+  const [dayName, monthName] = formatMonthDay(date);
 
   if (type === "time") {
+    const time = formatTime(date);
+
     return (
       <Item>
         <StyledButton

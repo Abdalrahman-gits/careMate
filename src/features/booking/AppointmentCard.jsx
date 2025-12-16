@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import image from "../assets/doc22.png";
-import ImageCircle from "./ImageCircle";
+import ImageCircle from "../../ui/ImageCircle";
+import { formatMonthDay, formatTime } from "../../utils/dateFormat";
+import { useDeleteAppointment } from "./useDeleteAppointment";
 
 const Card = styled.div`
   padding: 2rem;
@@ -11,6 +12,8 @@ const Card = styled.div`
   grid-template-columns: auto 1fr;
   align-items: start;
   column-gap: 1.6rem;
+
+  box-shadow: 0 0 12px rgb(0 0 0 / 10%);
 `;
 
 const Row = styled.div`
@@ -109,36 +112,51 @@ const CardFooter = styled.div`
 `;
 
 function AppointmentCard({ bookInfo }) {
+  const { deleteAppointment, isPending } = useDeleteAppointment();
+  const {
+    id: bookId,
+    booking_date,
+    doctors: { full_name, image_url, speciality },
+  } = bookInfo;
+
+  const date = new Date(booking_date);
+
+  const time = formatTime(date);
+  const [dayName, monthInfo] = formatMonthDay(date);
+  const [monthName, monthDay] = monthInfo.split(" ");
+
   return (
     <Card>
-      <ImageCircle src={image} size="13" alt="imgae" />
+      <ImageCircle src={image_url} size="13" alt={`Dr. ${full_name}-image`} />
 
       <AppointmentDetails>
         <div>
           <Row>
-            <h3>Dr. sayed farash</h3>
+            <h3>Dr. {full_name}</h3>
             <BadgeStatus>confirmed</BadgeStatus>
           </Row>
-          <Speciality>specilaity</Speciality>
+          <Speciality>{speciality}</Speciality>
         </div>
 
         <DateBox>
           <Slot>
-            <span>Nov</span>
-            <p>12</p>
+            <span>{monthName}</span>
+            <p>{monthDay}</p>
           </Slot>
 
           <Divider />
 
           <Slot>
-            <span>thursday</span>
-            <p>10:00 Am</p>
+            <span>{dayName}</span>
+            <p>{time}</p>
           </Slot>
         </DateBox>
       </AppointmentDetails>
 
       <CardFooter>
-        <button>Cancel</button>
+        <button onClick={() => deleteAppointment(bookId)} disabled={isPending}>
+          Cancel
+        </button>
         <button>View Details</button>
       </CardFooter>
     </Card>

@@ -14,8 +14,12 @@ function useLogin() {
       queryClient.setQueryData(["user"], data);
       navigate("/doctors");
     },
-    onError: () => {
-      toast.error("incorrect email or password");
+    onError: (err) => {
+      toast.error(
+        err.message === "Failed to fetch"
+          ? "Check your internet"
+          : "Incorrect email or password"
+      );
     },
   });
 
