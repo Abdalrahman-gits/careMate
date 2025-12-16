@@ -11,14 +11,16 @@ import { useState } from "react";
 
 const filterData = {
   specialty: [
+    "All",
     "Dentist",
     "Cardiology",
     "Dermatology",
     "Neurology",
     "Gynecology",
   ],
-  rate: Array.from({ length: 5 }, (_, i) => i + 1),
+  rate: ["All", ...Array.from({ length: 5 }, (_, i) => i + 1)],
   experience: [
+    "All",
     { min: 0, max: 1 },
     { min: 2, max: 9 },
     { min: 10, max: 15 },
@@ -35,6 +37,16 @@ const initialValues = {
 
 function Doctors() {
   const [selectedValues, setSelectedValues] = useState(initialValues);
+  const [appliedFilters, setAppliedFilters] = useState(initialValues);
+
+  function handleSearch() {
+    setAppliedFilters(selectedValues);
+  }
+
+  function handleReset() {
+    setSelectedValues(initialValues);
+    setAppliedFilters(initialValues);
+  }
 
   return (
     <>
@@ -46,7 +58,10 @@ function Doctors() {
       />
 
       <SectionLayout paddingTopMobile="0">
-        <FilterBox title="Find a doctor at your own ease">
+        <FilterBox
+          title="Find a doctor at your own ease"
+          onSearch={handleSearch}
+          onReset={handleReset}>
           <SelectMenus>
             <SelectMenus.SelectCloumn>
               <SelectMenus.Label labelName="Specialty" />
@@ -96,7 +111,11 @@ function Doctors() {
               <SelectMenus.Label labelName="Experience" />
               <SelectMenus.Toggler
                 opens="experience"
-                selected={`${selectedValues["experience"]["min"]}-${selectedValues["experience"]["max"]} Years`}
+                selected={
+                  selectedValues["experience"] === "All"
+                    ? "All"
+                    : `${selectedValues["experience"]["min"]}-${selectedValues["experience"]["max"]} Years`
+                }
                 icon={<BsHourglassSplit />}
               />
               <SelectMenus.List listId="experience">
@@ -108,7 +127,7 @@ function Doctors() {
                         experience: ele,
                       }))
                     }>
-                    {ele.min}-{ele.max}
+                    {ele === "All" ? ele : `${ele.min}-${ele.max}`}
                   </SelectMenus.Item>
                 ))}
               </SelectMenus.List>
@@ -138,7 +157,7 @@ function Doctors() {
           </SelectMenus>
         </FilterBox>
 
-        <AvailableDoctors />
+        <AvailableDoctors filters={appliedFilters} />
       </SectionLayout>
     </>
   );

@@ -37,15 +37,17 @@ const ButtonContainer = styled.div`
     direction === "vertical" ? "column" : "row"};
 `;
 
-function FilterBox({ title, children }) {
+function FilterBox({ title, onSearch, onReset, children }) {
   return (
     <StyledFilterBox>
       <h2>{title}</h2>
       <FilterFieldsContainer>
         {children}
         <ButtonContainer>
-          <Button size="large">Search</Button>
-          <Button variation="beigeBtn" size="large">
+          <Button size="large" onClick={onSearch}>
+            Search
+          </Button>
+          <Button variation="beigeBtn" size="large" onClick={onReset}>
             Reset
           </Button>
         </ButtonContainer>
