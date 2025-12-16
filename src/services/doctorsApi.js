@@ -20,31 +20,4 @@ async function getDoctorInfo(doctorId) {
   return data;
 }
 
-async function addAppointment(data) {
-  const { error } = await supabase
-    .from("bookings")
-    .insert([
-      {
-        doctor_id: data.doctorId,
-        user_id: data.userId,
-        booking_date: data.date,
-      },
-    ])
-    .select();
-
-  if (error) throw new Error(error.message);
-}
-
-async function getUserAppointments(userId) {
-  console.log(userId);
-  const { data, error } = await supabase
-    .from("bookings")
-    .select("*")
-    .eq("user_id", userId);
-
-  if (error) throw new Error(error.message);
-
-  return data;
-}
-
-export { getDoctors, getDoctorInfo, addAppointment, getUserAppointments };
+export { getDoctors, getDoctorInfo };

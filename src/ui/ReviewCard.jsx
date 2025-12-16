@@ -4,6 +4,7 @@ import Wrapper from "./Wrapper";
 import { BsHourglassSplit } from "react-icons/bs";
 import Button from "./Button";
 import styled from "styled-components";
+import ImageCircle from "./ImageCircle";
 
 const StyledCard = styled.div`
   position: relative;
@@ -11,8 +12,7 @@ const StyledCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-radius: var(--border-radius-lg);
-  box-shadow: 5px 5px 15px -12px var(--color-muted),
-    -5px 0 15px -12px var(--color-muted);
+  box-shadow: 0px 0px 12px rgb(0, 0, 0, 0.1);
 
   @media (min-width: 991px) {
     flex-direction: row;
@@ -42,13 +42,6 @@ const DoctorName = styled.h2`
   text-transform: capitalize;
   font-weight: 600;
   margin-bottom: 1rem;
-`;
-
-const Image = styled.div`
-  width: 15rem;
-  height: 15rem;
-  border-radius: 50%;
-  overflow: hidden;
 `;
 
 const RatingBox = styled.div`
@@ -81,9 +74,8 @@ function ReviewCard({ number }) {
 
       {/* main info */}
       <DoctorInfo>
-        <Image>
-          <img src={docimg} alt="img-alt" />
-        </Image>
+        <ImageCircle src={docimg} alt="img-alt" />
+
         <div>
           <DoctorName>dr jane doe</DoctorName>
           <Wrapper>

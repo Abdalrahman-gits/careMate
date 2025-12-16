@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addAppointment as apiAddAppointment } from "../../services/doctorsApi";
+import { addAppointment as apiAddAppointment } from "../../services/bookApi";
 import toast from "react-hot-toast";
 
 function useAddAppointment(userId) {

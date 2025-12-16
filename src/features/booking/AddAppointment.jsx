@@ -5,7 +5,7 @@ import Button from "../../ui/Button";
 import { generateDays, generateTime } from "../../utils/generateSlots";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAddAppointment } from "../doctors/useAddAppointment";
+import { useAddAppointment } from "./useAddAppointment";
 
 const Label = styled.p`
   font-size: 2rem;

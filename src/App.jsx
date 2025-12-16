@@ -12,6 +12,7 @@ import Doctor from "./pages/Doctor";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./contexts/AuthContext";
+import Appointments from "./pages/Appointments";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ function App() {
               </Route>
               <Route path="/doctors" element={<Doctors />} />
               <Route path="/doctors/doctor/:id" element={<Doctor />} />
+              <Route path="/booked-appointments" element={<Appointments />} />
               <Route path="/health-blog" element={<HealthBlog />} />
               <Route path="/reviews" element={<Reviews />} />
             </Route>

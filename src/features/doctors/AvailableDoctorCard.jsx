@@ -1,11 +1,11 @@
 import styled from "styled-components";
-// import doctor1 from "../../assets/doctor1.png";
 import Button from "../../ui/Button";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
 import Wrapper from "../../ui/Wrapper";
 import StarRating from "../../ui/StarRating";
 import { useNavigate } from "react-router-dom";
+import Image from "../../ui/ImageCircle";
 
 const StyledDoctorCard = styled.div`
   display: flex;
@@ -37,12 +37,6 @@ const DoctorInfo = styled.div`
   }
 `;
 
-const Image = styled.img`
-  width: 15rem;
-  height: 15rem;
-  border-radius: 50%;
-`;
-
 function AvailableDoctorCard({ doctor }) {
   const navigate = useNavigate();
   const { id, full_name, rate, experience, speciality, image_url } = doctor;
@@ -71,7 +65,7 @@ function AvailableDoctorCard({ doctor }) {
 
         {/* rating ⭐ */}
         <Wrapper>
-          <span>Rating: {rate}</span>
+          <span>Rating:</span>
           <StarRating size={12} isReadOnly={true} defualtRate={rate} />
         </Wrapper>
       </DoctorInfo>

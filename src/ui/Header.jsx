@@ -12,6 +12,7 @@ import BurgerIcon from "./BurgerIcon";
 import Dropdowns from "./Dropdowns";
 import AuthButtons from "./AuthButtons";
 import UserAvatar from "../features/authentication/UserAvatar";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.header`
   position: sticky;
@@ -58,6 +59,7 @@ function Header() {
   const [menuOpened, setMenuOpened] = useState(false);
   const { isAuthenticated, isPending: isLogin } = useAuth();
   const { logout, isPending: isLogout } = useLogout();
+  const navigate = useNavigate();
 
   const isLoading = isLogin || isLogout;
 
@@ -82,7 +84,10 @@ function Header() {
 
                   <Dropdowns.List menuId="user-avatar">
                     <Dropdowns.Item>Profile</Dropdowns.Item>
-                    <Dropdowns.Item>My Appointments</Dropdowns.Item>
+                    <Dropdowns.Item
+                      onClick={() => navigate("/booked-appointments")}>
+                      My Appointments
+                    </Dropdowns.Item>
                     <Dropdowns.Item onClick={logout}>Logout</Dropdowns.Item>
                   </Dropdowns.List>
                 </Dropdowns.Menu>
