@@ -88,8 +88,8 @@ function AddAppointment({ doctorId, userId, appointments }) {
           ))}
         </DateList>
       </div>
-      <ButtonBox>
-        {selectedDate && selectedTime && (
+      {selectedDate && selectedTime && (
+        <ButtonBox>
           <Button
             size="large"
             variation="primary"
@@ -97,8 +97,8 @@ function AddAppointment({ doctorId, userId, appointments }) {
             disabled={isPending}>
             Confirm Appointent
           </Button>
-        )}
-      </ButtonBox>
+        </ButtonBox>
+      )}
     </>
   );
 }

@@ -3,6 +3,7 @@ import AvailableDoctorCard from "./AvailableDoctorCard";
 import { useDoctors } from "./useDoctors";
 import SectionHeader from "../../ui/SectionHeader";
 import Spinner from "../../ui/Spinner";
+import { memo } from "react";
 
 const StyledDoctorsList = styled.div`
   display: grid;
@@ -15,11 +16,29 @@ const StyledDoctorsList = styled.div`
   }
 `;
 
-function AvailableDoctors() {
+// Without memo ,every change in filter field causes an un neccessary render
+const AvailableDoctors = memo(function AvailableDoctors({ filters }) {
   const { doctors, isPending: isLoading } = useDoctors();
-  const doctorsNum = doctors?.length;
 
   if (isLoading) return <Spinner />;
+
+  // 1) Filtering Doctors
+  const filteredDoctors = doctors.filter((doctor) => {
+    const specialty =
+      filters.specialty === "All" || doctor.speciality === filters.specialty;
+
+    const rate = filters.rate === "All" || doctor.rate === filters.rate;
+
+    const experience =
+      filters.experience === "All" ||
+      (doctor.experience >= filters.experience.min &&
+        doctor.experience <= filters.experience.max);
+
+    return specialty && rate && experience;
+  });
+
+  // 2) Number of passed Doctors from filter process
+  const doctorsNum = filteredDoctors?.length;
 
   return (
     <>
@@ -28,12 +47,12 @@ function AvailableDoctors() {
         subTitle="Book appointments with minimum wait-time & verfied doctor details"
       />
       <StyledDoctorsList>
-        {doctors.map((doctor) => (
+        {filteredDoctors.map((doctor) => (
           <AvailableDoctorCard key={doctor.id} doctor={doctor} />
         ))}
       </StyledDoctorsList>
     </>
   );
-}
+});
 
 export default AvailableDoctors;
