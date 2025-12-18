@@ -5,6 +5,8 @@ import { BsHourglassSplit } from "react-icons/bs";
 import Button from "./Button";
 import styled from "styled-components";
 import ImageCircle from "./ImageCircle";
+import Modal from "./Modal";
+import ReviewForm from "./ReviewForm";
 
 const StyledCard = styled.div`
   position: relative;
@@ -69,36 +71,43 @@ const RateNumber = styled.span`
 
 function ReviewCard({ number }) {
   return (
-    <StyledCard>
-      {/* <span>abs</span> */}
+    <Modal>
+      <StyledCard>
+        {/* <span>abs</span> */}
 
-      {/* main info */}
-      <DoctorInfo>
-        <ImageCircle src={docimg} alt="img-alt" />
+        {/* main info */}
+        <DoctorInfo>
+          <ImageCircle src={docimg} alt="img-alt" />
 
-        <div>
-          <DoctorName>dr jane doe</DoctorName>
-          <Wrapper>
-            <Wrapper gapsize="smaller">
-              <RiStethoscopeLine />
-              <span>dentist</span>
+          <div>
+            <DoctorName>dr jane doe</DoctorName>
+            <Wrapper>
+              <Wrapper gapsize="smaller">
+                <RiStethoscopeLine />
+                <span>dentist</span>
+              </Wrapper>
+              <Wrapper gapsize="smaller">
+                <BsHourglassSplit />
+                <span>(X) Years</span>
+              </Wrapper>
             </Wrapper>
-            <Wrapper gapsize="smaller">
-              <BsHourglassSplit />
-              <span>(X) Years</span>
-            </Wrapper>
-          </Wrapper>
-        </div>
-        <Button size="large">Give Review</Button>
-      </DoctorInfo>
+          </div>
+          <Modal.OpenButton name="review">
+            <Button size="large">Give Review</Button>
+          </Modal.OpenButton>
+          <Modal.ModalWindow name="review">
+            <ReviewForm />
+          </Modal.ModalWindow>
+        </DoctorInfo>
 
-      {/* rating info */}
-      <RatingBox>
-        <span>Your Review</span>
-        <RateNumber>4.0</RateNumber>
-        <span>stars</span>
-      </RatingBox>
-    </StyledCard>
+        {/* rating info */}
+        <RatingBox>
+          <span>Your Review</span>
+          <RateNumber>4.0</RateNumber>
+          <span>stars</span>
+        </RatingBox>
+      </StyledCard>
+    </Modal>
   );
 }
 

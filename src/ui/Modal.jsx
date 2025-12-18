@@ -10,6 +10,7 @@ const Overlay = styled.div`
   left: 0;
   height: 100vh;
   width: 100%;
+  padding: 1rem;
   background-color: rgb(1, 1, 1, 0.3);
 
   display: flex;
@@ -25,16 +26,17 @@ const StyledModal = styled.div`
   padding: 3.4rem 1.4rem;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
+  max-width: 100%;
 `;
 
 const ButtonClose = styled.button`
   position: absolute;
   background: none;
   color: var(--color-grey-500);
-  right: 1rem;
-  top: 1.2rem;
+  right: 2.5rem;
+  top: 2rem;
   border-radius: var(--border-radius-sm);
-  transition: all 0.3s background-color;
+  transition: 0.3s background-color;
 
   &:hover {
     background-color: var(--color-grey-200);
