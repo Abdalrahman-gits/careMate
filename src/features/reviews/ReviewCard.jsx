@@ -1,12 +1,12 @@
 import { RiStethoscopeLine } from "react-icons/ri";
-import docimg from "../assets/doctor1.png";
-import Wrapper from "./Wrapper";
+import Wrapper from "../../ui/Wrapper";
 import { BsHourglassSplit } from "react-icons/bs";
-import Button from "./Button";
+import Button from "../../ui/Button";
 import styled from "styled-components";
-import ImageCircle from "./ImageCircle";
-import Modal from "./Modal";
+import ImageCircle from "../../ui/ImageCircle";
+import Modal from "../../ui/Modal";
 import ReviewForm from "./ReviewForm";
+import StarRating from "../../ui/StarRating";
 
 const StyledCard = styled.div`
   position: relative;
@@ -28,7 +28,6 @@ const DoctorInfo = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 1.6rem;
-  /* width: 100%; */
   padding: 2rem;
   border-bottom: 1px solid var(--border-color);
 
@@ -69,26 +68,69 @@ const RateNumber = styled.span`
   color: var(--color-rate-number);
 `;
 
-function ReviewCard({ number }) {
+const CardNumber = styled.span`
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-green);
+  color: white;
+  border-radius: 0px 0px var(--border-radius-sm) var(--border-radius-sm);
+`;
+
+// created_at
+// :
+// "2025-12-10T20:24:58.462113+00:00"
+// experience
+// :
+// 14
+// full_name
+// :
+// "Ahmed Samir"
+// id
+// :
+// 76
+// image_url
+// :
+// "https://enmomjenfxnhbaehgyvo.supabase.co/storage/v1/object/public/careMate_images/doc4.png"
+// rate
+// :
+// 4
+// reviews
+// :
+// []
+// speciality
+// :
+// "Cardiology"
+
+function ReviewCard({ reviewData, cardNum }) {
+  const {
+    image_url,
+    full_name,
+    speciality,
+    experience,
+    reviews: rateInfo,
+  } = reviewData;
+
   return (
     <Modal>
       <StyledCard>
-        {/* <span>abs</span> */}
+        <CardNumber>{cardNum}</CardNumber>
 
         {/* main info */}
         <DoctorInfo>
-          <ImageCircle src={docimg} alt="img-alt" />
+          <ImageCircle src={image_url} alt={`Dr. ${full_name}-image`} />
 
           <div>
-            <DoctorName>dr jane doe</DoctorName>
+            <DoctorName>Dr. {full_name}</DoctorName>
             <Wrapper>
               <Wrapper gapsize="smaller">
                 <RiStethoscopeLine />
-                <span>dentist</span>
+                <span>{speciality}</span>
               </Wrapper>
               <Wrapper gapsize="smaller">
                 <BsHourglassSplit />
-                <span>(X) Years</span>
+                <span>({experience}) Years</span>
               </Wrapper>
             </Wrapper>
           </div>
@@ -96,15 +138,21 @@ function ReviewCard({ number }) {
             <Button size="large">Give Review</Button>
           </Modal.OpenButton>
           <Modal.ModalWindow name="review">
-            <ReviewForm />
+            <ReviewForm reviewData={reviewData} />
           </Modal.ModalWindow>
         </DoctorInfo>
 
         {/* rating info */}
         <RatingBox>
           <span>Your Review</span>
-          <RateNumber>4.0</RateNumber>
-          <span>stars</span>
+          <RateNumber>
+            {rateInfo.length >= 1 ? rateInfo[0].rate.toFixed(1) : "0.0"}
+          </RateNumber>
+          <StarRating
+            isReadOnly={true}
+            size={14}
+            defualtRate={rateInfo[0]?.rate ?? 0}
+          />
         </RatingBox>
       </StyledCard>
     </Modal>

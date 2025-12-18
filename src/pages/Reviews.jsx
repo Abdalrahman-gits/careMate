@@ -2,12 +2,7 @@ import BgHealthBlog from "../assets/BgHealthBlog.png";
 import Hero from "../ui/Hero";
 import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";
-import FilterColumn from "../ui/FilterColumn";
-import FilterBox from "../ui/FilterBox";
-import { RiStethoscopeLine } from "react-icons/ri";
-import { BsHourglassSplit } from "react-icons/bs";
-import BlogList from "../ui/BlogList";
-import ReviewsList from "../ui/ReviewsList";
+import ReviewsList from "../features/reviews/ReviewsList";
 
 function Reviews() {
   return (

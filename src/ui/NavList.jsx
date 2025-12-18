@@ -53,8 +53,8 @@ const Links = [
 function NavList({ direction = "horizontal", onClick }) {
   return (
     <StyledNavList direction={direction}>
-      {Links.map((link) => (
-        <li>
+      {Links.map((link, index) => (
+        <li key={index}>
           <StyledNavLink to={link.path} onClick={onClick}>
             {link.pathName}
           </StyledNavLink>
