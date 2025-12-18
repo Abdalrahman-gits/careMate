@@ -46,7 +46,11 @@ export default function StarRating({
             onRate={() => handleRating(i + 1)}
             onHoverIn={() => handleHoverIn(i + 1)}
             onHoverOut={() => handleHoverOut()}
-            full={(tempRating || rating) >= i + 1}
+            full={
+              isReadOnly
+                ? defualtRate >= i + 1
+                : (tempRating || rating) >= i + 1
+            }
             size={size}
             color={color}
             isReadOnly={isReadOnly}

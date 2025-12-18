@@ -38,7 +38,6 @@ async function getCurrentUser() {
 
   const { data, error } = await supabase.auth.getUser();
   if (error) throw new Error("couldn't get user");
-  console.log(data);
 
   return data;
 }

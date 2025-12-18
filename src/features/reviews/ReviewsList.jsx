@@ -1,5 +1,7 @@
-import ReviewCard from "./ReviewCard";
 import styled from "styled-components";
+import { useReviews } from "./useReviews";
+import ReviewCard from "../reviews/ReviewCard";
+import Spinner from "../../ui/Spinner";
 
 const DoctorGrid = styled.div`
   display: grid;
@@ -12,10 +14,14 @@ const DoctorGrid = styled.div`
 `;
 
 function ReviewsList() {
+  const { reviews, isPending } = useReviews();
+
+  if (isPending) return <Spinner />;
+
   return (
     <DoctorGrid>
-      {Array.from({ length: 4 }, (ele, i) => (
-        <ReviewCard number={i + 1} />
+      {reviews?.map((review, i) => (
+        <ReviewCard key={review.id} reviewData={review} cardNum={i + 1} />
       ))}
     </DoctorGrid>
   );
