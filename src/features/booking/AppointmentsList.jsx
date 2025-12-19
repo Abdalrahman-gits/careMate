@@ -19,7 +19,7 @@ function AppointmentsList() {
   return (
     <DoctorGrid>
       {appointments.map((book) => (
-        <AppointmentCard bookInfo={book} />
+        <AppointmentCard key={book.id} bookInfo={book} />
       ))}
     </DoctorGrid>
   );
