@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-function signUpSchema() {
+function profileSchema() {
   const schema = Joi.object({
     name: Joi.string().required().min(3).max(30).messages({
       "string.min": "Name must be between 3 and 30 characters",
@@ -18,13 +18,6 @@ function signUpSchema() {
       .messages({
         "string.email": "This field must be in email shape",
       }),
-    password: Joi.string()
-      .pattern(/^(?=.*[a-zA-Z])(?=.*\d).{4,20}$/)
-      .required()
-      .messages({
-        "string.pattern.base":
-          "Password must be 4-20 characters and include at least a letter and a number",
-      }),
   }).messages({
     "string.empty": "This field is required",
   });
@@ -32,4 +25,4 @@ function signUpSchema() {
   return schema;
 }
 
-export { signUpSchema };
+export { profileSchema };
