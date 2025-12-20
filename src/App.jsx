@@ -13,12 +13,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./contexts/AuthContext";
 import Appointments from "./pages/Appointments";
+import Profile from "./pages/Profile";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <AuthProvider>
         <GlobalStyles />
         <BrowserRouter>
@@ -35,6 +38,7 @@ function App() {
               <Route path="/booked-appointments" element={<Appointments />} />
               <Route path="/health-blog" element={<HealthBlog />} />
               <Route path="/reviews" element={<Reviews />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
         </BrowserRouter>

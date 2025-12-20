@@ -83,7 +83,9 @@ function Header() {
                   </Dropdowns.Toggler>
 
                   <Dropdowns.List menuId="user-avatar">
-                    <Dropdowns.Item>Profile</Dropdowns.Item>
+                    <Dropdowns.Item onClick={() => navigate("/profile")}>
+                      Profile
+                    </Dropdowns.Item>
                     <Dropdowns.Item
                       onClick={() => navigate("/booked-appointments")}>
                       My Appointments

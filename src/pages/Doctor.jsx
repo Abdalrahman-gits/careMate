@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Spinner from "../ui/Spinner";
 import { useAppointments } from "../features/booking/useAppointments";
 import { useAuth } from "../contexts/AuthContext";
+import PageTitle from "../ui/PageTitle";
 
 const GridContainer = styled.div`
   display: grid;
@@ -15,6 +16,7 @@ const GridContainer = styled.div`
   row-gap: 3rem;
 
   padding: 2rem;
+  margin-top: 2rem;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-lg);
@@ -26,12 +28,6 @@ const GridContainer = styled.div`
 
 const CustomContainer = styled(Container)`
   padding-block: 3rem;
-`;
-
-const Header = styled.h1`
-  font-size: 2.8rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
 `;
 
 function Doctor() {
@@ -48,7 +44,7 @@ function Doctor() {
 
   return (
     <CustomContainer>
-      <Header>Book Appointment: Date & Time</Header>
+      <PageTitle>Book Appointment: Date & Time</PageTitle>
       <GridContainer>
         <DoctorInfo doctor={doctor} />
         <AddAppointment

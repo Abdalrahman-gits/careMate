@@ -8,6 +8,7 @@ const DoctorGrid = styled.div`
   display: grid;
   gap: var(--section-lg-gap);
   grid-template-columns: 1fr;
+  margin-top: 2rem;
 `;
 
 function AppointmentsList() {

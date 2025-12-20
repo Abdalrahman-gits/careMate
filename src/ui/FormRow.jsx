@@ -10,14 +10,15 @@ const StyledFormRow = styled.div`
     width: fit-content;
     text-transform: capitalize;
     font-size: 1.4rem;
-    color: var(--color-muted);
+    font-weight: 500;
+    color: ${({ labelColor = "var(--color-muted)" }) => labelColor};
     cursor: pointer;
   }
 `;
 
-function FormRow({ label, error, children }) {
+function FormRow({ label, labelColor, error, children }) {
   return (
-    <StyledFormRow>
+    <StyledFormRow labelColor={labelColor}>
       <label htmlFor={label}>{label}</label>
       <div>
         {children}

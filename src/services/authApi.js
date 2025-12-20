@@ -42,9 +42,26 @@ async function getCurrentUser() {
   return data;
 }
 
+async function updateUserData(userData) {
+  const { data, error } = await supabase.auth.updateUser({
+    email: userData.email,
+    data: {
+      name: userData.name,
+      phone: userData.phone,
+      address: userData.address,
+      gender: userData.gender,
+      dateOfBirth: userData.dateOfBirth,
+    },
+  });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
 async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) throw new Error("something went wrong during logout");
 }
 
-export { signup, login, getCurrentUser, logout };
+export { signup, login, getCurrentUser, updateUserData, logout };

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Container from "../ui/Container";
 import AppointmentsList from "../features/booking/AppointmentsList";
+import PageTitle from "../ui/PageTitle";
 
 const StyledAppointments = styled.div`
   padding-block: 3rem;
@@ -12,17 +13,11 @@ const StyledAppointments = styled.div`
   }
 `;
 
-const Header = styled.h1`
-  font-size: 2.8rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-`;
-
 function Appointments() {
   return (
     <StyledAppointments>
       <Container>
-        <Header>My Appointments</Header>
+        <PageTitle>My Appointments</PageTitle>
 
         <AppointmentsList />
       </Container>
