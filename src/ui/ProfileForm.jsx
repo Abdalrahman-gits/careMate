@@ -6,7 +6,7 @@ import { FaEnvelope, FaPhone } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "./Button";
 import { useAuth } from "../contexts/AuthContext";
 import { useUpdateUser } from "../features/authentication/useUpdateUser";
@@ -22,6 +22,7 @@ const Form = styled.form`
 const FormHeader = styled.div`
   padding: var(--padding-val);
   border-bottom: 1px solid #ddd;
+  text-align: center;
 
   display: flex;
   flex-direction: column;
@@ -46,6 +47,7 @@ const FormHeader = styled.div`
   @media (min-width: 991px) {
     flex-direction: row;
     align-items: flex-start;
+    text-align: left;
   }
 `;
 
@@ -126,6 +128,12 @@ const BaseInput = styled.input`
   &:focus-within {
     outline: 2px solid var(--primary-green);
   }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: #333;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 `;
 
 const InputWithIcon = styled(BaseInput).attrs({ as: "div" })`
@@ -136,6 +144,12 @@ const InputWithIcon = styled(BaseInput).attrs({ as: "div" })`
   & input,
   textarea {
     flex: 1;
+    height: 100%;
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      -webkit-text-fill-color: #333;
+      transition: background-color 5000s ease-in-out 0s;
+    }
   }
 
   & svg {
@@ -152,70 +166,45 @@ const Footer = styled.div`
 
 function ProfileForm() {
   const { user } = useAuth();
-
-  const [currentData, setCurrentData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    gender: "",
-    address: "",
+  const metaData = user?.user?.user_metadata || {};
+  const intialData = {
+    name: metaData.name || "",
+    email: metaData.email || "",
+    phone: metaData.phone || "",
+    gender: metaData.gender || "",
+    address: metaData.address || "",
     avatar: "",
-  });
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  };
+
+  const [currentData, setCurrentData] = useState(intialData);
+
+  // A) Seperated because the set function is passed to DatePicker
+  const [dateOfBirth, setDateOfBirth] = useState(metaData.dateOfBirth || "");
   const { updateUser, isPending } = useUpdateUser();
 
-  useEffect(
-    function () {
-      const metaData = user?.user?.user_metadata;
-
-      if (metaData) {
-        setCurrentData((val) => ({
-          ...val,
-          name: metaData.name || "",
-          email: metaData.email || "",
-          phone: metaData.phone || "",
-          gender: metaData.gender || "",
-          address: metaData.address || "",
-        }));
-
-        setDateOfBirth(metaData.dateOfBirth || "");
-      }
-    },
-    [user?.user?.user_metadata]
-  );
-
+  // 1) Controlling Text data
   function handleOnChange(e) {
     const { id, value } = e.target;
-
     setCurrentData((cur) => ({ ...cur, [id]: value }));
   }
 
+  // 2) Controlling File change
   function handleFileChange(e) {
     const file = e.target.files[0];
-
     if (file) setCurrentData((val) => ({ ...val, avatar: file }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-
     updateUser({ ...currentData, dateOfBirth });
   }
 
   function handleReset() {
-    const metaData = user?.user?.user_metadata;
-
-    setCurrentData({
-      name: metaData.name || "",
-      email: metaData.email || "",
-      phone: metaData.phone || "",
-      gender: metaData.gender || "",
-      address: metaData.address || "",
-      avatar: "",
-    });
-
+    setCurrentData(intialData);
     setDateOfBirth(metaData.dateOfBirth || "");
   }
+
+  console.log(currentData);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -225,7 +214,7 @@ function ProfileForm() {
             src={
               currentData.avatar
                 ? URL.createObjectURL(currentData.avatar)
-                : user?.user?.user_metadata?.avatar || defaultUser
+                : metaData.avatar || defaultUser
             }
             alt="image"
             size="15"
@@ -240,8 +229,8 @@ function ProfileForm() {
           hidden
         />
         <div>
-          <h2>{user?.user?.user_metadata?.name}</h2>
-          <p>Patient ID: 1230</p>
+          <h2>{metaData.name}</h2>
+          <p>Patient ID: 1000200</p>
         </div>
       </FormHeader>
 
@@ -259,7 +248,7 @@ function ProfileForm() {
                 onChange={handleOnChange}
               />
             </FormRow>
-            <FormRow label="Gender" labelColor="black">
+            <FormRow label="gender" labelColor="black">
               <BaseInput
                 as="select"
                 id="gender"
@@ -268,8 +257,8 @@ function ProfileForm() {
                 <option value="" disabled>
                   Select Gender
                 </option>
-                <option value="male">Male</option>
                 <option value="female">Female</option>
+                <option value="male">Male</option>
               </BaseInput>
             </FormRow>
             <FormRow label="Date Of Birth" labelColor="black">
@@ -332,7 +321,7 @@ function ProfileForm() {
         <Footer>
           <Button
             variation="bordered"
-            type="reset"
+            type="button"
             onClick={handleReset}
             disabled={isPending}>
             Cancel
