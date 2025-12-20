@@ -10,7 +10,7 @@ function profileSchema() {
       .pattern(/^\d{11}$/)
       .required()
       .messages({
-        "string.pattern.base": "Phone number must be 10 digits",
+        "string.pattern.base": "Phone number must be 11 digits",
       }),
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: false } })

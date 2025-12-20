@@ -10,6 +10,8 @@ import { useState } from "react";
 import Button from "./Button";
 import { useAuth } from "../contexts/AuthContext";
 import { useUpdateUser } from "../features/authentication/useUpdateUser";
+import { profileSchema } from "../features/authentication/profileSchema";
+import toast from "react-hot-toast";
 
 const Form = styled.form`
   --padding-val: 3rem;
@@ -176,6 +178,7 @@ function ProfileForm() {
     avatar: "",
   };
 
+  const [errors, setErrors] = useState({ name: "", email: "", phone: "" });
   const [currentData, setCurrentData] = useState(intialData);
 
   // A) Seperated because the set function is passed to DatePicker
@@ -186,6 +189,7 @@ function ProfileForm() {
   function handleOnChange(e) {
     const { id, value } = e.target;
     setCurrentData((cur) => ({ ...cur, [id]: value }));
+    setErrors((curr) => ({ ...curr, [id]: "" }));
   }
 
   // 2) Controlling File change
@@ -196,6 +200,24 @@ function ProfileForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const { error } = profileSchema().validate({
+      name: currentData.name,
+      email: currentData.email,
+      phone: currentData.phone,
+    });
+
+    if (error) {
+      toast.error("Please fill in all fields correctly.");
+      const errorObj = {};
+      // assign error messages in "errorObj"
+      error.details.forEach(
+        (field) => (errorObj[field.path[0]] = field.message)
+      );
+
+      // set error messages
+      setErrors(() => errorObj);
+      return;
+    }
     updateUser({ ...currentData, dateOfBirth });
   }
 
@@ -239,7 +261,7 @@ function ProfileForm() {
           <SectionTitle>personal information</SectionTitle>
 
           <Grid>
-            <FormRow label="Full Name" labelColor="black">
+            <FormRow label="Full Name" labelColor="black" error={errors?.name}>
               <BaseInput
                 type="text"
                 id="name"
@@ -277,7 +299,10 @@ function ProfileForm() {
           <SectionTitle>Contact details</SectionTitle>
 
           <Grid>
-            <FormRow label="Email Address" labelColor="black">
+            <FormRow
+              label="Email Address"
+              labelColor="black"
+              error={errors?.email}>
               <InputWithIcon>
                 <FaEnvelope />
                 <input
@@ -290,7 +315,7 @@ function ProfileForm() {
               </InputWithIcon>
             </FormRow>
 
-            <FormRow label="Phone" labelColor="black">
+            <FormRow label="Phone" labelColor="black" error={errors?.phone}>
               <InputWithIcon>
                 <FaPhone />
                 <input
