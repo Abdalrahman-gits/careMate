@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import image from "../assets/doc22.png";
+import defaultUser from "../assets/default-user.jpg";
 import ImageCircle from "../ui/ImageCircle";
 import FormRow from "./FormRow";
 import { FaEnvelope, FaPhone } from "react-icons/fa";
@@ -29,12 +29,18 @@ const FormHeader = styled.div`
   gap: 1.6rem;
 
   & h2 {
+    text-transform: capitalize;
     font-size: 2.2rem;
     font-weight: 600;
   }
 
   & p {
     color: var(--color-green);
+    font-size: 1.4rem;
+  }
+
+  & label {
+    cursor: pointer;
   }
 
   @media (min-width: 991px) {
@@ -147,7 +153,14 @@ const Footer = styled.div`
 function ProfileForm() {
   const { user } = useAuth();
 
-  const [currentData, setCurrentData] = useState({});
+  const [currentData, setCurrentData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    gender: "",
+    address: "",
+    avatar: "",
+  });
   const [dateOfBirth, setDateOfBirth] = useState("");
   const { updateUser, isPending } = useUpdateUser();
 
@@ -156,13 +169,14 @@ function ProfileForm() {
       const metaData = user?.user?.user_metadata;
 
       if (metaData) {
-        setCurrentData({
+        setCurrentData((val) => ({
+          ...val,
           name: metaData.name || "",
           email: metaData.email || "",
           phone: metaData.phone || "",
           gender: metaData.gender || "",
           address: metaData.address || "",
-        });
+        }));
 
         setDateOfBirth(metaData.dateOfBirth || "");
       }
@@ -174,6 +188,12 @@ function ProfileForm() {
     const { id, value } = e.target;
 
     setCurrentData((cur) => ({ ...cur, [id]: value }));
+  }
+
+  function handleFileChange(e) {
+    const file = e.target.files[0];
+
+    if (file) setCurrentData((val) => ({ ...val, avatar: file }));
   }
 
   function handleSubmit(e) {
@@ -191,6 +211,7 @@ function ProfileForm() {
       phone: metaData.phone || "",
       gender: metaData.gender || "",
       address: metaData.address || "",
+      avatar: "",
     });
 
     setDateOfBirth(metaData.dateOfBirth || "");
@@ -199,9 +220,27 @@ function ProfileForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <FormHeader>
-        <ImageCircle src={image} alt="image" size="15" />
+        <label htmlFor="avatar">
+          <ImageCircle
+            src={
+              currentData.avatar
+                ? URL.createObjectURL(currentData.avatar)
+                : user?.user?.user_metadata?.avatar || defaultUser
+            }
+            alt="image"
+            size="15"
+          />
+        </label>
+        <input
+          type="file"
+          name=""
+          id="avatar"
+          accept="image/*"
+          onChange={handleFileChange}
+          hidden
+        />
         <div>
-          <h2>John Doe</h2>
+          <h2>{user?.user?.user_metadata?.name}</h2>
           <p>Patient ID: 1230</p>
         </div>
       </FormHeader>

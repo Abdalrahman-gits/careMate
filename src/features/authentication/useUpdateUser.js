@@ -7,13 +7,21 @@ function useUpdateUser() {
 
   const { mutate: updateUser, isPending } = useMutation({
     mutationFn: updateUserData,
-    onSuccess: (data) => {
-      queryClient.setQueryData(["user"], data);
-      toast.success("User account successfully updated");
+
+    onMutate: () => {
+      const id = toast.loading("Updating Profile");
+      return { toastId: id };
     },
 
-    onError: (err) => {
-      toast.error(err.message);
+    onSuccess: (data, _, context) => {
+      queryClient.setQueryData(["user"], data);
+      toast.success("User account successfully updated", {
+        id: context.toastId,
+      });
+    },
+
+    onError: (err, _, context) => {
+      toast.error(err.message, { id: context.toastId });
     },
   });
 
