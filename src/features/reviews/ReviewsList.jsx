@@ -31,7 +31,7 @@ function ReviewsList() {
       variants={ContainerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}>
+      viewport={{ once: true, amount: 0.1 }}>
       {reviews?.map((review, i) => (
         <ReviewCard key={review.id} reviewData={review} cardNum={i + 1} />
       ))}

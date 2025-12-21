@@ -7,8 +7,16 @@ import FilterBox from "../ui/FilterBox";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
 import BlogList from "../ui/BlogList";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function HealthBlog() {
+  useEffect(() => {
+    const id = toast("This Page is Read Only", { icon: "😊" });
+
+    return () => toast.dismiss(id);
+  }, []);
+
   return (
     <>
       <Hero
