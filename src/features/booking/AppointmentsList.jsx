@@ -17,6 +17,19 @@ function AppointmentsList() {
 
   if (isPending) return <Spinner />;
 
+  if (appointments.length < 1)
+    return (
+      <p
+        style={{
+          textAlign: "center",
+          fontSize: "2.4rem",
+          fontWeight: "600",
+          color: "var(--color-red-700)",
+        }}>
+        There is No Appointments Yet
+      </p>
+    );
+
   return (
     <DoctorGrid>
       {appointments.map((book) => (

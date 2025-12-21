@@ -7,6 +7,7 @@ import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useEffect } from "react";
 import Spinner from "../ui/Spinner";
+import FullPage from "../ui/FullPage";
 
 const AuthPageStyle = styled.div`
   background-image: url(${AuthImageBg});
@@ -22,15 +23,6 @@ const AuthPageStyle = styled.div`
   @media (min-width: 991px) {
     min-height: calc(100dvh - var(--header-h-lg));
   }
-`;
-
-const FullPage = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  position: fixed;
-  inset: 0;
 `;
 
 function Auth() {

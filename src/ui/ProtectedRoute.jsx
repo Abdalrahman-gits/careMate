@@ -2,16 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Spinner from "./Spinner";
 import { useEffect } from "react";
-import styled from "styled-components";
-
-const FullPage = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  position: fixed;
-  inset: 0;
-`;
+import FullPage from "./FullPage";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
