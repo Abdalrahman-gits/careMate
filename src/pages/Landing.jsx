@@ -28,7 +28,7 @@ function Landing() {
         <CustomButton
           variation="whiteBtn"
           size="large"
-          onClick={() => navigate("/auth")}>
+          onClick={() => navigate("/auth/login")}>
           Get Started
         </CustomButton>
       )}

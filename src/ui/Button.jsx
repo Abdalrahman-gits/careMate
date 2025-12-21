@@ -44,6 +44,7 @@ const Button = styled.button`
   align-items: center;
   flex-direction: ${({ direction = "row" }) => direction};
   gap: 1rem;
+  min-height: 4rem;
 
   ${({ size = "small" }) => sizes[size]};
   border-radius: var(--border-radius-md);

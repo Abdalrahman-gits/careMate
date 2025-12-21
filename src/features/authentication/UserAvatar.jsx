@@ -28,8 +28,6 @@ function UserAvatar() {
   const { user } = useAuth();
   const metaData = user?.user?.user_metadata || {};
 
-  console.log(user);
-
   return (
     <StyledAvatar>
       <img src={metaData.avatar || defaultImg} alt="alt-image" />

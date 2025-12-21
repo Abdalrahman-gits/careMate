@@ -3,7 +3,10 @@ import AuthImageBg from "../assets/AuthImage.png";
 import SignupForm from "../features/authentication/SignupForm";
 import LoginForm from "../features/authentication/LoginForm";
 // import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useEffect } from "react";
+import Spinner from "../ui/Spinner";
 
 const AuthPageStyle = styled.div`
   background-image: url(${AuthImageBg});
@@ -21,12 +24,33 @@ const AuthPageStyle = styled.div`
   }
 `;
 
+const FullPage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+`;
+
 function Auth() {
-  return (
-    <AuthPageStyle>
-      <Outlet />
-    </AuthPageStyle>
-  );
+  const { isAuthenticated: isAuth, isPending } = useAuth();
+
+  if (isPending)
+    return (
+      <FullPage>
+        <Spinner />
+      </FullPage>
+    );
+
+  if (!isPending && isAuth) return <Navigate to="/doctors" replace={true} />;
+
+  if (!isAuth && !isPending)
+    return (
+      <AuthPageStyle>
+        <Outlet />
+      </AuthPageStyle>
+    );
 }
 
 export default Auth;

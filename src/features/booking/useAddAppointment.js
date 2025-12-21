@@ -7,12 +7,16 @@ function useAddAppointment(userId) {
 
   const { mutate: addAppointment, isPending } = useMutation({
     mutationFn: apiAddAppointment,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["appointments", userId]);
-      toast.success("Appointment booked successfully");
+    onMutate: () => {
+      const id = toast.loading("Booking...");
+      return { toastId: id };
     },
-    onError: (err) => {
-      toast.error(err.message);
+    onSuccess: (_, __, context) => {
+      queryClient.invalidateQueries(["appointments", userId]);
+      toast.success("Appointment booked successfully", { id: context.toastId });
+    },
+    onError: (err, _, context) => {
+      toast.error(err.message, { id: context.toastId });
     },
   });
 

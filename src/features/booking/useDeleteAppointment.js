@@ -10,12 +10,17 @@ function useDeleteAppointment() {
   const { mutate: deleteAppointment, isPending } = useMutation({
     mutationFn: apiDeleteAppointment,
 
-    onSuccess: () => {
-      toast.success("Appointment deleted");
+    onMutate: () => {
+      const id = toast.loading("Canceling Appointment");
+      return { toastId: id };
+    },
+
+    onSuccess: (_, __, context) => {
+      toast.success("Appointment deleted", { id: context.toastId });
       queryClient.invalidateQueries(["appointments", user?.user?.id]);
     },
-    onError: () => {
-      toast.error("Can not delete Appointment");
+    onError: (_, __, context) => {
+      toast.error("Can not delete Appointment", { id: context.toastId });
     },
   });
 

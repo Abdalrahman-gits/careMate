@@ -19,8 +19,8 @@ const StyledBlogList = styled.div`
 function BlogList() {
   return (
     <StyledBlogList>
-      {Array.from({ length: 4 }, () => (
-        <BlogCard />
+      {Array.from({ length: 4 }, (_, index) => (
+        <BlogCard key={index} />
       ))}
     </StyledBlogList>
   );

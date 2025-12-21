@@ -9,13 +9,17 @@ function useSignup() {
 
   const { mutate: signup, isPending } = useMutation({
     mutationFn: signUpApi,
-    onSuccess: (data) => {
-      toast.success("Account created successfully");
+    onMutate: () => {
+      const id = toast.loading("Signinng up");
+      return { toastId: id };
+    },
+    onSuccess: (data, _, context) => {
+      toast.success("Account created successfully", { id: context.toastId });
       queryClient.setQueryData(["user"], data);
       navigate("/doctors");
     },
-    onError: (err) => {
-      toast.error(err.message);
+    onError: (err, _, context) => {
+      toast.error(err.message, { id: context.toastId });
     },
   });
 

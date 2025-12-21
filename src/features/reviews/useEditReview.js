@@ -8,12 +8,17 @@ function useEditReview() {
   const { mutate: editReview, isPending } = useMutation({
     mutationFn: ({ id, data }) => apiEditReview(id, data),
 
-    onSuccess: () => {
-      queryClient.invalidateQueries(["reviews"]);
-      toast.success("Review Edited");
+    onMutate: () => {
+      const id = toast.loading("Editting Review");
+      return { toastId: id };
     },
-    onError: (err) => {
-      toast.error(err.message);
+
+    onSuccess: (_, __, context) => {
+      queryClient.invalidateQueries(["reviews"]);
+      toast.success("Review Edited", { id: context.toastId });
+    },
+    onError: (err, _, context) => {
+      toast.error(err.message, { id: context.toastId });
     },
   });
 
