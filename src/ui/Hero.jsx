@@ -147,7 +147,12 @@ function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
         </LeftConatiner>
       </LeftHandSide>
       <RightHandSide>
-        <Image maxheight={imgMinHeight} src={imgSrc} alt="Landing-page-image" />
+        <Image
+          maxheight={imgMinHeight}
+          src={imgSrc}
+          fetchPriority="high"
+          alt="Landing-page-image"
+        />
       </RightHandSide>
     </StyledHero>
   );

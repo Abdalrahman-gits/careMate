@@ -10,6 +10,12 @@ const LogoStyled = styled.div`
 
   color: var(--primary-green);
 
+  img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+  }
+
   @media (min-width: 991px) {
     & {
       margin-right: 2.5rem;
