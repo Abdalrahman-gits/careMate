@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "./Button";
+import { motion } from "framer-motion";
 
 const StyledFilterBox = styled.div`
   z-index: 50;
@@ -39,7 +40,11 @@ const ButtonContainer = styled.div`
 
 function FilterBox({ title, onSearch, onReset, children }) {
   return (
-    <StyledFilterBox>
+    <StyledFilterBox
+      as={motion.div}
+      initial={{ opacity: 0, top: 50 }}
+      animate={{ opacity: 1, top: 0 }}
+      transition={{ duration: 0.3 }}>
       <h2>{title}</h2>
       <FilterFieldsContainer>
         {children}

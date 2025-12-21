@@ -47,8 +47,8 @@ const StyledNavLink = styled(NavLink)`
 const Links = [
   { path: "/", pathName: "Home", isProtected: false },
   { path: "/doctors", pathName: "Doctors", isProtected: true },
-  { path: "/health-blog", pathName: "Health Blog", isProtected: true },
   { path: "/reviews", pathName: "Reviews", isProtected: true },
+  { path: "/health-blog", pathName: "Health Blog", isProtected: true },
 ];
 
 function NavList({ direction = "horizontal", onClick: onCloseMenu }) {

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { HiXMark } from "react-icons/hi2";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Overlay = styled.div`
   position: fixed;
@@ -72,18 +73,30 @@ function ModalWindow({ children, name }) {
   const { openName, close } = useContext(ModalContext);
   const { ref } = useClickOutside(close);
 
-  if (openName !== name) return null;
-
   return createPortal(
-    <Overlay>
-      <StyledModal ref={ref}>
-        <ButtonClose onClick={close}>
-          <HiXMark />
-        </ButtonClose>
+    <AnimatePresence>
+      {openName === name && (
+        <Overlay
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}>
+          <StyledModal
+            as={motion.div}
+            ref={ref}
+            initial={{ opacity: 0, scale: 0.85, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 40 }}
+            transition={{ duration: 0.2 }}>
+            <ButtonClose onClick={close}>
+              <HiXMark />
+            </ButtonClose>
 
-        {cloneElement(children, { onCloseModal: close })}
-      </StyledModal>
-    </Overlay>,
+            {cloneElement(children, { onCloseModal: close })}
+          </StyledModal>
+        </Overlay>
+      )}
+    </AnimatePresence>,
     document.body
   );
 }

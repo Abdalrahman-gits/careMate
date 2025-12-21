@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { FaRegCalendarCheck } from "react-icons/fa6";
 import { useAuth } from "../contexts/AuthContext";
 
 import LandingImage from "../assets/landing.jpg";
 import Hero from "../ui/Hero";
 import Button from "../ui/Button";
 import styled from "styled-components";
-import { FaRegCalendarCheck } from "react-icons/fa6";
 
 const CustomButton = styled(Button)`
   @media (max-width: 990px) {
@@ -20,27 +20,25 @@ function Landing() {
   return (
     <Hero
       title="Health in Your Hands."
-      paragraph="Take control of your healthcare with CareMate. Book appointments
-              with ease, explore health blogs, and stay on top of your
-              well-being, all in one place."
+      paragraph={
+        "Take control of your healthcare with CareMate. " +
+        "Book appointments with ease, explore health blogs, " +
+        "and stay on top of your well-being, all in one place."
+      }
       imgSrc={LandingImage}>
-      {!isAuthenticated && (
-        <CustomButton
-          variation="whiteBtn"
-          size="large"
-          onClick={() => navigate("/auth/login")}>
-          Get Started
-        </CustomButton>
-      )}
-
-      {isAuthenticated && (
-        <CustomButton
-          variation="whiteBtn"
-          size="large"
-          onClick={() => navigate("/doctors")}>
-          Book Now <FaRegCalendarCheck />
-        </CustomButton>
-      )}
+      <CustomButton
+        variation="whiteBtn"
+        size="large"
+        onClick={() =>
+          isAuthenticated ? navigate("/doctors") : navigate("/auth/login")
+        }>
+        {isAuthenticated && (
+          <>
+            Book Now <FaRegCalendarCheck />
+          </>
+        )}
+        {!isAuthenticated && "Get Started"}
+      </CustomButton>
     </Hero>
   );
 }

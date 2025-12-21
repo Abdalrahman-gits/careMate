@@ -13,6 +13,7 @@ import Dropdowns from "./Dropdowns";
 import AuthButtons from "./AuthButtons";
 import UserAvatar from "../features/authentication/UserAvatar";
 import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 const StyledHeader = styled.header`
   position: sticky;
@@ -103,12 +104,14 @@ function Header() {
 
               <BurgerIcon isActive={menuOpened} setMenuOpened={setMenuOpened} />
             </HeaderActions>
-            {menuOpened && (
-              <MobileMenu
-                setMenuOpened={setMenuOpened}
-                isAuthenticated={isAuthenticated}
-              />
-            )}
+            <AnimatePresence>
+              {menuOpened && (
+                <MobileMenu
+                  setMenuOpened={setMenuOpened}
+                  isAuthenticated={isAuthenticated}
+                />
+              )}
+            </AnimatePresence>
           </HeaderContainer>
         </Container>
       </Dropdowns>

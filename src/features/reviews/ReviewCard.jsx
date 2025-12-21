@@ -7,8 +7,9 @@ import ImageCircle from "../../ui/ImageCircle";
 import Modal from "../../ui/Modal";
 import ReviewForm from "./ReviewForm";
 import StarRating from "../../ui/StarRating";
+import { motion } from "framer-motion";
 
-const StyledCard = styled.div`
+const StyledCard = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -78,30 +79,10 @@ const CardNumber = styled.span`
   border-radius: 0px 0px var(--border-radius-sm) var(--border-radius-sm);
 `;
 
-// created_at
-// :
-// "2025-12-10T20:24:58.462113+00:00"
-// experience
-// :
-// 14
-// full_name
-// :
-// "Ahmed Samir"
-// id
-// :
-// 76
-// image_url
-// :
-// "https://enmomjenfxnhbaehgyvo.supabase.co/storage/v1/object/public/careMate_images/doc4.png"
-// rate
-// :
-// 4
-// reviews
-// :
-// []
-// speciality
-// :
-// "Cardiology"
+const cardVariant = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 function ReviewCard({ reviewData, cardNum }) {
   const {
@@ -114,7 +95,7 @@ function ReviewCard({ reviewData, cardNum }) {
 
   return (
     <Modal>
-      <StyledCard>
+      <StyledCard variants={cardVariant}>
         <CardNumber>{cardNum}</CardNumber>
 
         {/* main info */}
