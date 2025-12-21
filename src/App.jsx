@@ -10,9 +10,7 @@ import LoginForm from "./features/authentication/LoginForm";
 import SignupForm from "./features/authentication/SignupForm";
 import ProtectedRoute from "./ui/ProtectedRoute";
 
-import { lazy, Suspense } from "react";
-import FullPage from "./ui/FullPage";
-import Spinner from "./ui/Spinner";
+import { lazy } from "react";
 
 const Landing = lazy(() => import("./pages/Landing"));
 const Auth = lazy(() => import("./pages/Auth"));
@@ -31,73 +29,67 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <AuthProvider>
         <GlobalStyles />
-        <Suspense
-          fallback={
-            <FullPage>
-              <Spinner />
-            </FullPage>
-          }>
-          <BrowserRouter>
-            <Routes>
-              <Route element={<AppLayout />}>
-                <Route path="/" element={<Landing />} />
-                <Route path="/auth" element={<Auth />}>
-                  <Route index element={<Navigate replace to="register" />} />
-                  <Route path="register" element={<SignupForm />} />
-                  <Route path="login" element={<LoginForm />} />
-                </Route>
-                <Route
-                  path="/doctors"
-                  element={
-                    <ProtectedRoute>
-                      <Doctors />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/doctors/doctor/:id"
-                  element={
-                    <ProtectedRoute>
-                      <Doctor />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/booked-appointments"
-                  element={
-                    <ProtectedRoute>
-                      <Appointments />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/health-blog"
-                  element={
-                    <ProtectedRoute>
-                      <HealthBlog />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/reviews"
-                  element={
-                    <ProtectedRoute>
-                      <Reviews />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-                    </ProtectedRoute>
-                  }
-                />
+
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route path="/" element={<Landing />} />
+              <Route path="/auth" element={<Auth />}>
+                <Route index element={<Navigate replace to="register" />} />
+                <Route path="register" element={<SignupForm />} />
+                <Route path="login" element={<LoginForm />} />
               </Route>
-            </Routes>
-          </BrowserRouter>
-        </Suspense>
+              <Route
+                path="/doctors"
+                element={
+                  <ProtectedRoute>
+                    <Doctors />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/doctors/doctor/:id"
+                element={
+                  <ProtectedRoute>
+                    <Doctor />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/booked-appointments"
+                element={
+                  <ProtectedRoute>
+                    <Appointments />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/health-blog"
+                element={
+                  <ProtectedRoute>
+                    <HealthBlog />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/reviews"
+                element={
+                  <ProtectedRoute>
+                    <Reviews />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
         <Toaster
           position="top-center"
           gutter={12}

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
-import LandingImage from "../assets/Landing.png";
+import LandingImage from "../assets/landing.jpg";
 import Hero from "../ui/Hero";
 import Button from "../ui/Button";
 import styled from "styled-components";

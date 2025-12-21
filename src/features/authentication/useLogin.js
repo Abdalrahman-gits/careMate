@@ -22,7 +22,7 @@ function useLogin() {
       toast.error(
         err.message === "Failed to fetch"
           ? "Check your internet"
-          : "Incorrect email or password",
+          : "Invalid email or password",
         { id: context.toastId }
       );
     },
