@@ -8,12 +8,17 @@ function useAddReview() {
   const { mutate: addReview, isPending } = useMutation({
     mutationFn: apiAddReview,
 
-    onSuccess: () => {
-      queryClient.invalidateQueries(["reviews"]);
-      toast.success("Review Added");
+    onMutate: () => {
+      const id = toast.loading("Submitting Review");
+      return { toastId: id };
     },
-    onError: (err) => {
-      toast.error(err.message);
+
+    onSuccess: (_, __, context) => {
+      queryClient.invalidateQueries(["reviews"]);
+      toast.success("Review Added", { id: context.toastId });
+    },
+    onError: (err, _, context) => {
+      toast.error(err.message, { id: context.toastId });
     },
   });
 

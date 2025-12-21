@@ -9,16 +9,21 @@ function useLogin() {
 
   const { mutate: login, isPending } = useMutation({
     mutationFn: loginApi,
-    onSuccess: (data) => {
-      toast.success("logged in successfully");
-      queryClient.setQueryData(["user"], data);
-      navigate("/doctors");
+    onMutate: () => {
+      const id = toast.loading("Logging in");
+      return { toastId: id };
     },
-    onError: (err) => {
+    onSuccess: (data, _, context) => {
+      toast.success("logged in successfully", { id: context.toastId });
+      queryClient.setQueryData(["user"], data);
+      // navigate("/doctors", { replace: true });
+    },
+    onError: (err, _, context) => {
       toast.error(
         err.message === "Failed to fetch"
           ? "Check your internet"
-          : "Incorrect email or password"
+          : "Invalid email or password",
+        { id: context.toastId }
       );
     },
   });

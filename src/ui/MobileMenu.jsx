@@ -2,6 +2,7 @@ import styled from "styled-components";
 import NavList from "./NavList";
 import AuthButtons from "./AuthButtons";
 import { useClickOutside } from "../hooks/useClickOutside";
+import { AnimatePresence, motion } from "framer-motion";
 
 const StyledMobileMenu = styled.div`
   display: flex;
@@ -12,6 +13,7 @@ const StyledMobileMenu = styled.div`
 
   position: absolute;
   inset-inline: 0;
+  top: 100%;
   padding: 2rem;
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius-lg);
@@ -23,18 +25,6 @@ const StyledMobileMenu = styled.div`
       display: none;
     }
   }
-
-  @keyframes fadein {
-    0% {
-      top: calc(100% + 1rem);
-      opacity: 0;
-    }
-
-    100% {
-      top: 100%;
-      opacity: 1;
-    }
-  }
 `;
 
 function MobileMenu({ setMenuOpened, isAuthenticated }) {
@@ -42,7 +32,13 @@ function MobileMenu({ setMenuOpened, isAuthenticated }) {
   const { ref } = useClickOutside(() => setMenuOpened(false), false);
 
   return (
-    <StyledMobileMenu className="mobile-menu" ref={ref}>
+    <StyledMobileMenu
+      className="mobile-menu"
+      ref={ref}
+      as={motion.div}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}>
       <NavList direction="vertical" onClick={() => setMenuOpened(false)} />
       {!isAuthenticated && (
         <AuthButtons

@@ -226,8 +226,6 @@ function ProfileForm() {
     setDateOfBirth(metaData.dateOfBirth || "");
   }
 
-  console.log(currentData);
-
   return (
     <Form onSubmit={handleSubmit}>
       <FormHeader>

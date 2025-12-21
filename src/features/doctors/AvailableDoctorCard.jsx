@@ -6,6 +6,7 @@ import Wrapper from "../../ui/Wrapper";
 import StarRating from "../../ui/StarRating";
 import { useNavigate } from "react-router-dom";
 import Image from "../../ui/ImageCircle";
+import { motion } from "framer-motion";
 
 const StyledDoctorCard = styled.div`
   display: flex;
@@ -37,12 +38,17 @@ const DoctorInfo = styled.div`
   }
 `;
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 function AvailableDoctorCard({ doctor }) {
   const navigate = useNavigate();
   const { id, full_name, rate, experience, speciality, image_url } = doctor;
 
   return (
-    <StyledDoctorCard>
+    <StyledDoctorCard as={motion.div} variants={cardVariants}>
       <DoctorInfo>
         {/* Doctor Image */}
         <Image src={image_url} alt={`${full_name}-image`} />

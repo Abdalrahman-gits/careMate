@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import defaultImg from "../../assets/default-user.jpg";
+import { useAuth } from "../../contexts/AuthContext";
 
 const StyledAvatar = styled.div`
   display: flex;
@@ -14,6 +15,8 @@ const StyledAvatar = styled.div`
 
   & span {
     display: none;
+    font-weight: 600;
+    font-size: 1.4rem;
 
     @media (min-width: 991px) {
       display: inline;
@@ -22,10 +25,13 @@ const StyledAvatar = styled.div`
 `;
 
 function UserAvatar() {
+  const { user } = useAuth();
+  const metaData = user?.user?.user_metadata || {};
+
   return (
     <StyledAvatar>
-      <img src={defaultImg} alt="alt-image" />
-      <span>Ghozal</span>
+      <img src={metaData.avatar || defaultImg} alt="alt-image" />
+      <span>{metaData.name}</span>
     </StyledAvatar>
   );
 }

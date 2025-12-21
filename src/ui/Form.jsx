@@ -5,10 +5,9 @@ const Form = styled.form`
   max-width: 100%;
   padding: 2.5rem;
   border-radius: 1.6rem;
-  box-shadow: 5px 5px 10px -9px var(--color-muted),
-    -5px -5px 10px -9px var(--color-muted),
-    -5px 5px 10px -9px var(--color-muted), 5px -5px 10px -9px var(--color-muted);
-  backdrop-filter: blur(35px);
+  backdrop-filter: blur(20px);
+  background: rgb(239 239 239 / 15%);
+  border: 1px solid #efefef;
 
   display: flex;
   flex-direction: column;

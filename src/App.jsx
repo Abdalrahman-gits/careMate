@@ -1,20 +1,25 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import AppLayout from "./ui/AppLayout";
-import Landing from "./pages/Landing";
-import Auth from "./pages/Auth";
-import Doctors from "./pages/Doctors";
-import HealthBlog from "./pages/HealthBlog";
-import Reviews from "./pages/Reviews";
-import GlobalStyles from "./styles/GlobalStyles";
-import LoginForm from "./features/authentication/LoginForm";
-import SignupForm from "./features/authentication/SignupForm";
-import Doctor from "./pages/Doctor";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./contexts/AuthContext";
-import Appointments from "./pages/Appointments";
-import Profile from "./pages/Profile";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import GlobalStyles from "./styles/GlobalStyles";
+
+import AppLayout from "./ui/AppLayout";
+import LoginForm from "./features/authentication/LoginForm";
+import SignupForm from "./features/authentication/SignupForm";
+import ProtectedRoute from "./ui/ProtectedRoute";
+
+import { lazy } from "react";
+
+const Landing = lazy(() => import("./pages/Landing"));
+const Auth = lazy(() => import("./pages/Auth"));
+const HealthBlog = lazy(() => import("./pages/HealthBlog"));
+const Doctors = lazy(() => import("./pages/Doctors"));
+const Reviews = lazy(() => import("./pages/Reviews"));
+const Doctor = lazy(() => import("./pages/Doctor"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Appointments = lazy(() => import("./pages/Appointments"));
 
 const queryClient = new QueryClient();
 
@@ -24,6 +29,7 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <AuthProvider>
         <GlobalStyles />
+
         <BrowserRouter>
           <Routes>
             <Route element={<AppLayout />}>
@@ -33,12 +39,54 @@ function App() {
                 <Route path="register" element={<SignupForm />} />
                 <Route path="login" element={<LoginForm />} />
               </Route>
-              <Route path="/doctors" element={<Doctors />} />
-              <Route path="/doctors/doctor/:id" element={<Doctor />} />
-              <Route path="/booked-appointments" element={<Appointments />} />
-              <Route path="/health-blog" element={<HealthBlog />} />
-              <Route path="/reviews" element={<Reviews />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/doctors"
+                element={
+                  <ProtectedRoute>
+                    <Doctors />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/doctors/doctor/:id"
+                element={
+                  <ProtectedRoute>
+                    <Doctor />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/booked-appointments"
+                element={
+                  <ProtectedRoute>
+                    <Appointments />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/health-blog"
+                element={
+                  <ProtectedRoute>
+                    <HealthBlog />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/reviews"
+                element={
+                  <ProtectedRoute>
+                    <Reviews />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
           </Routes>
         </BrowserRouter>

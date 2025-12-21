@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledHero = styled.div`
@@ -48,8 +49,18 @@ const MutedText = styled.p`
   line-height: 180%;
   word-spacing: 2px;
 
+  span {
+    animation: blink 0.2s steps(2) infinite;
+  }
+
   @media (min-width: 991px) {
     margin: 1.5rem 0 7rem;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
   }
 `;
 
@@ -98,13 +109,39 @@ const Image = styled.img`
 `;
 
 function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
+  const [animateText, setAnimateText] = useState("");
+
+  useEffect(
+    function () {
+      let index = 0;
+      const id = setInterval(() => {
+        setAnimateText(paragraph.slice(0, index + 1));
+        index++;
+
+        if (index === paragraph.length) clearInterval(id);
+      }, 30);
+
+      return () => clearInterval(id);
+    },
+    [paragraph]
+  );
+
   return (
     <StyledHero minheight={imgMinHeight}>
       <LeftHandSide>
         <LeftConatiner>
           <div>
             <h1 style={{ fontWeight: "normal" }}>{title}</h1>
-            <MutedText>{paragraph}</MutedText>
+            <MutedText>
+              {animateText}
+              <span
+                style={{
+                  display:
+                    paragraph.length === animateText.length ? "none" : null,
+                }}>
+                |
+              </span>
+            </MutedText>
           </div>
           {children}
         </LeftConatiner>

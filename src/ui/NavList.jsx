@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { useAuth } from "../contexts/AuthContext";
 
 const StyledNavList = styled.ul`
   display: flex;
@@ -44,18 +45,23 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const Links = [
-  { path: "/", pathName: "Home" },
-  { path: "/doctors", pathName: "Doctors" },
-  { path: "/health-blog", pathName: "Health Blog" },
-  { path: "/reviews", pathName: "Reviews" },
+  { path: "/", pathName: "Home", isProtected: false },
+  { path: "/doctors", pathName: "Doctors", isProtected: true },
+  { path: "/reviews", pathName: "Reviews", isProtected: true },
+  { path: "/health-blog", pathName: "Health Blog", isProtected: true },
 ];
 
-function NavList({ direction = "horizontal", onClick }) {
+function NavList({ direction = "horizontal", onClick: onCloseMenu }) {
+  const { isAuthenticated: isAuth } = useAuth();
+
   return (
     <StyledNavList direction={direction}>
       {Links.map((link, index) => (
         <li key={index}>
-          <StyledNavLink to={link.path} onClick={onClick}>
+          <StyledNavLink
+            to={link.path}
+            onClick={onCloseMenu}
+            replace={link.isProtected && !isAuth}>
             {link.pathName}
           </StyledNavLink>
         </li>

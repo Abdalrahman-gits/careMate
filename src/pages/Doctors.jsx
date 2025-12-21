@@ -73,6 +73,7 @@ function Doctors() {
               <SelectMenus.List listId="specialty">
                 {filterData.specialty.map((ele) => (
                   <SelectMenus.Item
+                    key={ele}
                     onClick={() =>
                       setSelectedValues((oldVal) => ({
                         ...oldVal,
@@ -95,6 +96,7 @@ function Doctors() {
               <SelectMenus.List listId="rate">
                 {filterData.rate.map((ele) => (
                   <SelectMenus.Item
+                    key={ele}
                     onClick={() =>
                       setSelectedValues((oldVal) => ({
                         ...oldVal,
@@ -119,8 +121,9 @@ function Doctors() {
                 icon={<BsHourglassSplit />}
               />
               <SelectMenus.List listId="experience">
-                {filterData.experience.map((ele) => (
+                {filterData.experience.map((ele, i) => (
                   <SelectMenus.Item
+                    key={i}
                     onClick={() =>
                       setSelectedValues((oldVal) => ({
                         ...oldVal,
@@ -143,6 +146,7 @@ function Doctors() {
               <SelectMenus.List listId="fee">
                 {filterData.fee.map((ele) => (
                   <SelectMenus.Item
+                    key={ele}
                     onClick={() =>
                       setSelectedValues((oldVal) => ({
                         ...oldVal,
