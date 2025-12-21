@@ -9,11 +9,19 @@ const Card = styled.div`
   background-color: white;
 
   display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: start;
-  column-gap: 1.6rem;
-
+  grid-template-columns: 1fr;
+  row-gap: 2.6rem;
   box-shadow: 0 0 12px rgb(0 0 0 / 10%);
+
+  img {
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    column-gap: 1.6rem;
+  }
 `;
 
 const Row = styled.div`
@@ -21,20 +29,31 @@ const Row = styled.div`
   align-items: center;
   gap: 0.8rem;
 
-  margin-bottom: 1rem;
-
   & > h3 {
     font-weight: 600;
     font-size: 2.4rem;
+
+    @media (max-width: 400px) {
+      font-size: 1.8rem;
+    }
   }
 `;
 
 const AppointmentDetails = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
   padding-bottom: 3rem;
   border-bottom: 1px solid var(--border-color);
+
+  @media (min-width: 568px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+  }
 `;
 
 const BadgeStatus = styled.span`
@@ -86,8 +105,6 @@ const Divider = styled.span`
 `;
 
 const CardFooter = styled.div`
-  grid-column: 2 / -1;
-
   display: flex;
   gap: 1rem;
   justify-content: end;
@@ -108,6 +125,10 @@ const CardFooter = styled.div`
     padding: var(--btn-sm-pd);
     background-color: var(--bg-ligt-gray);
     border-radius: var(--border-radius-md);
+  }
+
+  @media (min-width: 768px) {
+    grid-column: 2 / -1;
   }
 `;
 
