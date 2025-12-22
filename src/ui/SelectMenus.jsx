@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import styled from "styled-components";
 import { useClickOutside } from "../hooks/useClickOutside";
+import { AnimatePresence, motion } from "framer-motion";
 
 const SelectCloumn = styled.div`
   position: relative;
@@ -35,7 +36,7 @@ const StyledToggler = styled.button`
   }
 `;
 
-const StyledList = styled.ul`
+const StyledList = styled(motion.ul)`
   position: absolute;
   left: 0;
   top: calc(100% + 0.5rem);
@@ -111,9 +112,20 @@ function List({ children, listId }) {
   const { openId, close } = useContext(SelectMenusContext);
   const { ref } = useClickOutside(close, false);
 
-  if (openId !== listId) return null;
-
-  return <StyledList ref={ref}>{children}</StyledList>;
+  return (
+    <AnimatePresence>
+      {openId === listId && (
+        <StyledList
+          ref={ref}
+          initial={{ opacity: 0, scaleY: 0 }}
+          animate={{ opacity: 1, scaleY: 1 }}
+          exit={{ opacity: 0, scaleY: 0 }}
+          style={{ transformOrigin: "top" }}>
+          {children}
+        </StyledList>
+      )}
+    </AnimatePresence>
+  );
 }
 
 function Item({ children, onClick }) {

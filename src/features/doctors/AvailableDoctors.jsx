@@ -58,6 +58,7 @@ const AvailableDoctors = memo(function AvailableDoctors({ filters }) {
         subTitle="Book appointments with minimum wait-time & verfied doctor details"
       />
       <StyledDoctorsList
+        key={JSON.stringify(filteredDoctors)}
         as={motion.div}
         variants={containerVariants}
         initial="hidden"
