@@ -154,6 +154,11 @@ const InputWithIcon = styled(BaseInput).attrs({ as: "div" })`
     }
   }
 
+  &:has(input:disabled) {
+    background-color: var(--color-grey-200);
+    color: var(--color-grey-500);
+  }
+
   & svg {
     color: var(--primary-green);
   }
@@ -169,6 +174,7 @@ const Footer = styled.div`
 function ProfileForm() {
   const { user } = useAuth();
   const metaData = user?.user?.user_metadata || {};
+
   const intialData = {
     name: metaData.name || "",
     email: metaData.email || "",
@@ -309,6 +315,7 @@ function ProfileForm() {
                   id="email"
                   value={currentData.email}
                   onChange={handleOnChange}
+                  disabled={true}
                 />
               </InputWithIcon>
             </FormRow>
