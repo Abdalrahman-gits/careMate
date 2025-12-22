@@ -18,6 +18,7 @@ import Reviews from "./pages/Reviews";
 import Doctor from "./pages/Doctor";
 import Profile from "./pages/Profile";
 import Appointments from "./pages/Appointments";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient();
 
@@ -85,6 +86,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>

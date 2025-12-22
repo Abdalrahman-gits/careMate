@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useTypeAnimation } from "../hooks/useTypeAnimation";
 
 const StyledHero = styled.div`
   display: flex;
@@ -109,22 +109,7 @@ const Image = styled.img`
 `;
 
 function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
-  const [animateText, setAnimateText] = useState("");
-
-  useEffect(
-    function () {
-      let index = 0;
-      const id = setInterval(() => {
-        setAnimateText(paragraph.slice(0, index + 1));
-        index++;
-
-        if (index === paragraph.length) clearInterval(id);
-      }, 20);
-
-      return () => clearInterval(id);
-    },
-    [paragraph]
-  );
+  const animtedText = useTypeAnimation(paragraph);
 
   return (
     <StyledHero minheight={imgMinHeight}>
@@ -133,11 +118,11 @@ function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
           <div>
             <h1 style={{ fontWeight: "normal" }}>{title}</h1>
             <MutedText>
-              {animateText}
+              {animtedText}
               <span
                 style={{
                   display:
-                    paragraph.length === animateText.length ? "none" : null,
+                    paragraph.length === animtedText.length ? "none" : null,
                 }}>
                 |
               </span>
