@@ -1,4 +1,4 @@
-import BgHealthBlog from "../assets/Healthblog.jpg";
+import BgHealthBlog from "../assets/optimHealthblog.jpg";
 import Hero from "../ui/Hero";
 import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";
@@ -14,7 +14,7 @@ function HealthBlog() {
   useEffect(() => {
     const id = toast("This Page is Read Only due to lack of data", {
       icon: "😊",
-      duration: 6000,
+      duration: 3000,
     });
 
     return () => toast.dismiss(id);

@@ -1,4 +1,4 @@
-import HealthBlogImg from "../assets/reviews.png";
+import ReviewsImg from "../assets/optimReviews.png";
 import Hero from "../ui/Hero";
 import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";
@@ -10,7 +10,7 @@ function Reviews() {
       <Hero
         title="Your Feedback Matters."
         paragraph="Share your thoughts on the care you received and help others make informed decisions when booking their appointments. Your review can guide others to better care."
-        imgSrc={HealthBlogImg}
+        imgSrc={ReviewsImg}
       />
 
       <SectionLayout>

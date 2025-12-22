@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AuthImageBg from "../assets/AuthImage.png";
+import AuthImageBg from "../assets/optimAuthimage.png";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Spinner from "../ui/Spinner";
