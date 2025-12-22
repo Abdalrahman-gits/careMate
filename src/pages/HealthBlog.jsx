@@ -12,7 +12,10 @@ import toast from "react-hot-toast";
 
 function HealthBlog() {
   useEffect(() => {
-    const id = toast("This Page is Read Only", { icon: "😊" });
+    const id = toast("This Page is Read Only due to lack of data", {
+      icon: "😊",
+      duration: 6000,
+    });
 
     return () => toast.dismiss(id);
   }, []);
