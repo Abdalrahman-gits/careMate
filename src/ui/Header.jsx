@@ -19,7 +19,7 @@ const StyledHeader = styled.header`
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 99;
   background-color: white;
   box-shadow: 0 -5px 10px -1px black;
 `;

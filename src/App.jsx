@@ -10,16 +10,14 @@ import LoginForm from "./features/authentication/LoginForm";
 import SignupForm from "./features/authentication/SignupForm";
 import ProtectedRoute from "./ui/ProtectedRoute";
 
-import { lazy } from "react";
-
-const Landing = lazy(() => import("./pages/Landing"));
-const Auth = lazy(() => import("./pages/Auth"));
-const HealthBlog = lazy(() => import("./pages/HealthBlog"));
-const Doctors = lazy(() => import("./pages/Doctors"));
-const Reviews = lazy(() => import("./pages/Reviews"));
-const Doctor = lazy(() => import("./pages/Doctor"));
-const Profile = lazy(() => import("./pages/Profile"));
-const Appointments = lazy(() => import("./pages/Appointments"));
+import Landing from "./pages/Landing";
+import Auth from "./pages/Auth";
+import HealthBlog from "./pages/HealthBlog";
+import Doctors from "./pages/Doctors";
+import Reviews from "./pages/Reviews";
+import Doctor from "./pages/Doctor";
+import Profile from "./pages/Profile";
+import Appointments from "./pages/Appointments";
 
 const queryClient = new QueryClient();
 

@@ -6,6 +6,7 @@ import LandingImage from "../assets/landing.jpg";
 import Hero from "../ui/Hero";
 import Button from "../ui/Button";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const CustomButton = styled(Button)`
   @media (max-width: 990px) {
@@ -29,6 +30,9 @@ function Landing() {
       <CustomButton
         variation="whiteBtn"
         size="large"
+        as={motion.button}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { delay: 151 * 0.02 } }}
         onClick={() =>
           isAuthenticated ? navigate("/doctors") : navigate("/auth/login")
         }>

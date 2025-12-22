@@ -119,7 +119,7 @@ function Hero({ imgMinHeight, title, paragraph, imgSrc, children }) {
         index++;
 
         if (index === paragraph.length) clearInterval(id);
-      }, 30);
+      }, 20);
 
       return () => clearInterval(id);
     },

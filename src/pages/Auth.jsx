@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import AuthImageBg from "../assets/AuthImage.png";
-import SignupForm from "../features/authentication/SignupForm";
-import LoginForm from "../features/authentication/LoginForm";
-// import { useState } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useEffect } from "react";
 import Spinner from "../ui/Spinner";
 import FullPage from "../ui/FullPage";
 
