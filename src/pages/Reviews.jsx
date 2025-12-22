@@ -1,4 +1,4 @@
-import ReviewsImg from "../assets/optimReviews.png";
+import ReviewsImg from "../assets/optimReviews.webp";
 import Hero from "../ui/Hero";
 import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";

@@ -1,4 +1,4 @@
-import doctorsImage from "../assets/optimAppointment.png";
+import doctorsImage from "../assets/optimAppointment.webp";
 import AvailableDoctors from "../features/doctors/AvailableDoctors";
 import Hero from "../ui/Hero";
 import SectionLayout from "../ui/SectionLayout";

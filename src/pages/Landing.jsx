@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { useAuth } from "../contexts/AuthContext";
 
-import LandingImage from "../assets/optimLanding.jpg";
+import LandingImage from "../assets/optimLanding.webp";
 import Hero from "../ui/Hero";
 import Button from "../ui/Button";
 import styled from "styled-components";

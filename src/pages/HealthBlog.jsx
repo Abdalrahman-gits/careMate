@@ -1,4 +1,4 @@
-import BgHealthBlog from "../assets/optimHealthblog.jpg";
+import BgHealthBlog from "../assets/optimHealthblog.webp";
 import Hero from "../ui/Hero";
 import SectionHeader from "../ui/SectionHeader";
 import SectionLayout from "../ui/SectionLayout";

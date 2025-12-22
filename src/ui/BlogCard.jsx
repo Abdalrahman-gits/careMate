@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import blogCard from "../assets/blogCard.png";
+import blogCard from "../assets/blogCard.webp";
 import Button from "./Button";
 import { GoArrowUpRight } from "react-icons/go";
 
