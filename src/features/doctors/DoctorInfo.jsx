@@ -28,6 +28,7 @@ const StyledDoctorInfo = styled.div`
 const DoctorDetails = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 
   & > h2 {
@@ -38,6 +39,10 @@ const DoctorDetails = styled.div`
   & > span {
     font-size: 1.4rem;
     color: var(--color-muted);
+  }
+
+  @media (min-width: 668px) {
+    align-items: flex-start;
   }
 `;
 
